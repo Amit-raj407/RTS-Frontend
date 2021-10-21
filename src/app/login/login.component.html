@@ -1,1 +1,49 @@
-<p>login works!</p>
+
+<div class="container login-container">
+    <div class="row text-center">
+        <div class="col-lg-6 col-md-12">
+            <div class="card login-full">
+                <div class="">
+                    <h1 class="mt-5">Login form</h1>
+                </div>
+                <div class="card-body login-card">
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control field shadow-none" [class.is-invalid] = "loginForm.get('email')?.invalid && loginForm.get('email')?.touched" name="userName" id="floatingInput" placeholder="name@example.com" formControlName="email">
+                            <label for="floatingInput">UserName / Email</label>
+                            <div *ngIf="(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) || loginForm.get('email')?.dirty">
+                                <small class="text-danger" *ngIf="loginForm.get('email')?.errors?.required">UserName / Email is required</small>
+                            </div>
+                        </div>
+                        <!-- {{uName.valid}} -->
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control field shadow-none" [class.is-invalid] = "loginForm.get('password')?.invalid && loginForm.get('password')?.touched" name="password" id="floatingPassword" formControlName="password" placeholder="Password">
+                            <label for="floatingPassword">Password</label>
+                            <div *ngIf="(loginForm.get('password')?.invalid && loginForm.get('password')?.touched) || loginForm.get('password')?.dirty">
+                                <small class="text-danger" *ngIf="loginForm.get('password')?.errors?.required">Password is required</small>
+                            </div>
+                        </div>
+                        <!-- {{uPass.valid}} -->
+                        <div class="btn-div">
+                            <button id="btn" class="btn" [disabled]="!(loginForm.valid)">Submit</button>
+                            <!-- <input type="submit" value="Submit" id="btn"> -->
+                        </div>
+                        <div *ngIf="errorMessage!=''" class="text-danger mt-3">
+                            {{errorMessage}}
+                        </div>
+                        <!-- {{f.valid}}
+                        {{f.value | json}} -->
+                    </form>
+                </div>
+                <div>
+                    <a href="https://www.google.com/"><i class="fab fa-google icon" id="google"></i></a>
+                    <a href="https://facebook.com/"><i class="fab fa-facebook icon" id="fb"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fab fa-instagram icon" id="insta"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 d-none d-lg-block d-sm-none d-md-none">
+            <img src="../../assets/illustrations/login_illustration.svg" class="img-fluid" alt="Login Img" id="login">
+        </div>
+    </div>
+</div>

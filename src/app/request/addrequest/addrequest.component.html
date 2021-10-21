@@ -1,1 +1,108 @@
-<p>addrequest works!</p>
+<div class="container mt-3">
+    <h1 class="text-center bg-light mb-3">Create Request</h1>
+    <form [formGroup]="requestForm"  (ngSubmit)="onRequestFormSubmit()"  enctype="multipart/form-data">
+
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="rqstTitle">Request Title<span class="text-danger">*</span></label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="title" id="rqstTitle" formControlName="reqTitle"
+                    placeholder="Request Title">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="rqstDesc">Request Description<span class="text-danger">*</span></label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="desc" id="rqstDesc" formControlName="reqDesc"
+                    placeholder="Request Description">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="deptSelect">Assigned To Dept<span class="text-danger">*</span></label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-select" name="rqstDept" id="deptSelect" formControlName="assignedDept">
+
+                    <option value="">1</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="userSelect">Assigned To User<span class="text-danger">*</span></label>
+            </div>
+            <div class="col-md-9">
+                <select class="form-select" formControlName="assignedUser" name="assignedTo" id="userSelect">
+                    <option value="">1</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="severity">Severity<span class="text-danger">*</span></label>
+            </div>
+            <div class="col-md-4">
+                <select name="" class="form-select" formControlName="severity" id="severity">
+                    <option value="" selected disabled>-Select-</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <div class="col-md-2 text-center">
+                <label for="priority">Priority<span class="text-danger">*</span></label>
+            </div>
+            <div class="col-md-3">
+                <select name="" class="form-select" formControlName="priority" id="priority">
+                    <option value="" selected disabled>-Select-</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="rqstNum">Request Number</label>
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" name="rqstNum" id="" value="Auto Generated" readonly>
+            </div>
+
+            <div class="col-md-2 text-center">
+                <label for="status">Status<span class="text-danger">*</span></label>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" name="" id="status" formControlName="status" readonly>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="comments">Comments</label>
+            </div>
+            <div class="col-md-9">
+                <!-- <input class="form-control" type="text" name="" id="comments" placeholder="Comments"> -->
+                <textarea class="form-control" name="comments" id="summernote" formControlName="initialComments"
+                    placeholder="Comments"></textarea>
+            </div>
+
+        </div>
+        <div class="row text-center mb-3">
+            <div class="col-md-6">
+                <button class="btn btn-success" id="btn-submit">Save</button>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-danger">Cancel</a>
+            </div>
+        </div>
+    </form>
+    <div class="text-center text-danger"></div>
+</div>
