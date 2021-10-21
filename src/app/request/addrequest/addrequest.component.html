@@ -1,14 +1,13 @@
 <div class="container mt-3">
     <h1 class="text-center bg-light mb-3">Create Request</h1>
-    <form [formGroup]="requestForm"  (ngSubmit)="onRequestFormSubmit()"  enctype="multipart/form-data">
+    <form [formGroup]="requestForm" (ngSubmit)="onRequestFormSubmit()" enctype="multipart/form-data">
 
         <div class="row mb-3">
             <div class="col-md-3">
                 <label for="rqstTitle">Request Title<span class="text-danger">*</span></label>
             </div>
             <div class="col-md-9">
-                <input type="text" class="form-control" name="title" id="rqstTitle" formControlName="reqTitle"
-                    placeholder="Request Title">
+                <input type="text" class="form-control" name="title" id="rqstTitle" formControlName="reqTitle" placeholder="Request Title">
             </div>
         </div>
         <div class="row mb-3">
@@ -16,8 +15,7 @@
                 <label for="rqstDesc">Request Description<span class="text-danger">*</span></label>
             </div>
             <div class="col-md-9">
-                <input type="text" class="form-control" name="desc" id="rqstDesc" formControlName="reqDesc"
-                    placeholder="Request Description">
+                <input type="text" class="form-control" name="desc" id="rqstDesc" formControlName="reqDesc" placeholder="Request Description">
             </div>
         </div>
         <div class="row mb-3">
@@ -81,7 +79,7 @@
                 <label for="status">Status<span class="text-danger">*</span></label>
             </div>
             <div class="col-md-3">
-                <input type="text" class="form-control" name="" id="status" formControlName="status" readonly>
+                <input type="text" class="form-control" name="" id="status" value="New Request" readonly>
             </div>
         </div>
         <div class="row mb-3">
@@ -90,8 +88,7 @@
             </div>
             <div class="col-md-9">
                 <!-- <input class="form-control" type="text" name="" id="comments" placeholder="Comments"> -->
-                <textarea class="form-control" name="comments" id="summernote" formControlName="initialComments"
-                    placeholder="Comments"></textarea>
+                <textarea class="form-control" name="comments" id="summernote" formControlName="initialComments" placeholder="Comments"></textarea>
             </div>
 
         </div>

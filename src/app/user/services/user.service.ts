@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,9 +10,16 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  createuserservice(userdata: any):Observable<any> {
-    return this.http.post(`${this.baseUrl}/createuser`, userdata);
+  createuserservice(userdata: any): Observable<any> {
+    const httpHeaders = new HttpHeaders({
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json',
+        authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+
+    return this.http.post(`${this.baseUrl}/createuser`, userdata,httpOptions);
   }
-
-
 }

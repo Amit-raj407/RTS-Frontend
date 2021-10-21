@@ -24,14 +24,7 @@ export class AdduserComponent implements OnInit {
     uPassword: new FormControl('', Validators.compose([Validators.required])),
     uIsActive: new FormControl('', Validators.compose([Validators.required])),
   });
-  userdata = {
-    uName: '',
-    uFName: '',
-    uLName: '',
-    uEmail: '',
-    uPassword: '',
-    uIsActive: '',
-  };
+
 
   errorMessage = {
     uName: [
@@ -53,9 +46,9 @@ export class AdduserComponent implements OnInit {
   };
 
   onSubmit() {
-    console.warn(this.userdata);
+    console.warn(this.createuser.value);
 
-    this.service.createuserservice(this.userdata).subscribe(
+    this.service.createuserservice(this.createuser.value).subscribe(
       (response: any) => {
         console.log(response);
       },

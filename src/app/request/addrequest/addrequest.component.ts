@@ -30,10 +30,8 @@ export class AddrequestComponent implements OnInit {
     priority: new FormControl('', [
       Validators.required
     ]),
-    
-    status: new FormControl('Initial Status', [
-      Validators.required
-    ]),
+
+
     initialComments: new FormControl('', [
       Validators.required
     ]),
@@ -41,7 +39,7 @@ export class AddrequestComponent implements OnInit {
 
   onRequestFormSubmit() {
     console.log(this.requestForm.value);
-    
+
   }
 
   ngOnInit(): void {
