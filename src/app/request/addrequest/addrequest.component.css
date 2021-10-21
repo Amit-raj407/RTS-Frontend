@@ -1,0 +1,8 @@
+.container {
+    padding-top: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 2%;
+    box-shadow: 10px 10px 8px 10px #888888;
+    border-radius: 30px;
+}
