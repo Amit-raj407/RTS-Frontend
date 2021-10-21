@@ -19,29 +19,28 @@ export class AddrequestComponent implements OnInit {
   request: Request = new Request;
 
   requestForm = new FormGroup({
-    reqTitle: new FormControl('', [
+    reqtitle: new FormControl('', [
       Validators.required
     ]),
-    reqDesc: new FormControl('', [
+    reqdesc: new FormControl('', [
       Validators.required
     ]),
-    assignedDept: new FormControl('', [
+    severity1: new FormControl('', [
       Validators.required
     ]),
-    assignedUser: new FormControl('', [
+    piority1: new FormControl('', [
       Validators.required
     ]),
-    severity: new FormControl('', [
+    reqdeptcode: new FormControl('', [
       Validators.required
     ]),
-    priority: new FormControl('', [
+    reqassignto: new FormControl('', [
+      Validators.required
+    ]),
+    reqinicomment: new FormControl('', [
       Validators.required
     ]),
 
-
-    initialComments: new FormControl('', [
-      Validators.required
-    ]),
   });
 
   onRequestFormSubmit() {
@@ -52,14 +51,14 @@ export class AddrequestComponent implements OnInit {
       reqtitle: this.requestForm.get('reqTitle')?.value,
       reqdesc: this.requestForm.get('reqDesc')?.value,
       reqassignto: this.requestForm.get('assignedUser')?.value,
-      reqassigndate: new Date,
+      // reqassigndate: new Date,
       reqinicomment: this.requestForm.get('initialComments')?.value,
       severity: this.requestForm.get('severity')?.value,
       piority: this.requestForm.get('priority')?.value,
       recreatedby: 1
     }
 
-    this.sub = this.requestService.saveRequest(this.request).subscribe({
+    this.sub = this.requestService.saveRequest(this.requestForm.value).subscribe({
       next: responseData => {
         console.log(responseData);
       },

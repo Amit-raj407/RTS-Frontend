@@ -5,7 +5,7 @@ export class Request {
     reqdesc!: string;
     reqassignto!: Number;
 
-    reqassigndate!: Date;
+
     reqinicomment!: string;
 
     severity!: Number;

@@ -24,13 +24,31 @@ export class RequestService {
   //   });
   // }
 
-  saveRequest(request: Request): Observable<any> {
+  saveRequest(request: any): Observable<any> {
     console.log('At ReqService'+request);
 
-    return this.http.post<any>(this.baseUrl+'', request, {
-      observe: 'response'
-    })
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+
+    return this.http.post<any>(this.baseUrl+'generaterequest', request, httpOptions);
   }
+
+
+
+
+
+
+
+
+
+
 
   getAllRequestsForUser(): Observable<any> {
     const httpHeaders = new HttpHeaders({
