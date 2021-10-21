@@ -26,7 +26,7 @@
             <div class="col-md-9">
                 <select class="form-select" name="rqstDept" id="deptSelect" formControlName="assignedDept">
                     <option value="" selected disabled>-Select-</option>
-                    <option value="">1</option>
+                    <option value="1">1</option>
                 </select>
             </div>
         </div>
@@ -37,7 +37,7 @@
             <div class="col-md-9">
                 <select class="form-select" formControlName="assignedUser" name="assignedTo" id="userSelect">
                     <option value="" selected disabled>-Select-</option>
-                    <option value="">1</option>
+                    <option value="1">1</option>
                 </select>
             </div>
         </div>
@@ -95,7 +95,7 @@
         </div>
         <div class="row text-center mb-3">
             <div class="col-md-6">
-                <button class="btn btn-success" id="btn-submit">Save</button>
+                <button class="btn btn-success" [disabled]="!requestForm.valid" id="btn-submit">Save</button>
             </div>
             <div class="col-md-6">
                 <a class="btn btn-danger">Cancel</a>
