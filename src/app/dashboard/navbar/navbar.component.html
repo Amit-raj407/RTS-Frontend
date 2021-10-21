@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a [routerLink]="['../dashboard']"><img src="../../assets/cozentus.png" class="navbar" alt="" srcset=""></a>
+        <a [routerLink]="['../dashboard']"><img src="../../../assets/Cozentus-Logo.png" class="navbar mx-2" alt="" srcset=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['../dashboard']">Home</a>
+                    <a class="nav-link hover-underline-animation" [routerLink]="['../dashboard']" [routerLinkActive]="['active', 'class2']">Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,11 +37,17 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="d-flex navbar-nav mb-2 mb-lg-0">
+            <!-- <ul class="navbar-nav navbar-right mb-2 mb-lg-0">
                 <li class="nav-item">
                     <p>Hi,Bhuban Bhai</p> &nbsp;&nbsp;</li>
-                <li class="nav-item"><button class="btn btn-outline-success" type="submit">Logout</button></li>
-            </ul>
+                <li class="nav-item"></li>
+            </ul> -->
+            <span class="navbar-text">
+                <a class="nav-link hover-underline-animation">Hi, {{userName}}</a>
+            </span>
+            <span class="navbar-text">
+                <a class="nav-link hover-underline-animation" href="#">Logout</a>
+            </span>
             <!-- <form class="d-flex">
                 <h5>Hi,Bhuban Bhai</h5> &nbsp;&nbsp;
                 <button class="btn btn-outline-success" type="submit">Logout</button>
