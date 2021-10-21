@@ -11,23 +11,23 @@
                 <th scope="col">Priority</th>
                 <th scope="col">Last_Updated_Date</th>
                 <th scope="col">Request Age</th>
-    
-    
+
+
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><a>data</a></td>
-                <td>data</td>
-                <td>data</td>
-                <td>data</td>
-                <td>data</td>
-                <td>data</td>
-                <td>data</td>
-                <td>data</td>
-                <td>data</td>
-                
-    
+            <tr *ngFor='let request of requests'>
+                <td><a>{{request.reqcode}}</a></td>
+                <td>{{request.reqtitle}}</td>
+                <td>{{request.status_desc}}</td>
+                <td>{{request.reqassignto}}</td>
+                <td>{{request.createdBy}}</td>
+                <td>{{request.severity1}}</td>
+                <td>{{request.piority1}}</td>
+                <td>{{request.date}}</td>
+                <td>{{request.age}}</td>
+
+
             </tr>
         </tbody>
     </table>

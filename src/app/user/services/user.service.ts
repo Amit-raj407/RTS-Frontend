@@ -6,20 +6,37 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  baseUrl = 'http://localhost:9091/home';
+  baseUrl = 'http://localhost:9091/home/';
 
   constructor(private http: HttpClient) {}
 
   createuserservice(userdata: any): Observable<any> {
     const httpHeaders = new HttpHeaders({
-      'Access-Control-Allow-Origin':'*',
+      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
-        authorization: 'Bearer ' + localStorage.getItem('token'),
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
     });
     const httpOptions = {
       headers: httpHeaders,
     };
+    return this.http.post(`${this.baseUrl}createuser`, userdata, httpOptions);
+  }
 
-    return this.http.post(`${this.baseUrl}/createuser`, userdata,httpOptions);
+  getalluser() {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+    return this.http.get<any>(
+      `${this.baseUrl}getalluser`,
+      httpOptions
+    );
   }
 }

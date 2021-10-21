@@ -50,9 +50,15 @@ export class LoginComponent implements OnInit {
     this.loginService.userAuth(this.user).subscribe({
       next: responseData => {
         this.data = responseData
-        console.log(this.data);
+        console.log(this.data.body.obj[0].uId);
         console.log(this.data.headers.get('authorization'));
         localStorage.setItem('token',this.data.headers.get('authorization'));
+        localStorage.setItem('userrole',this.data.headers.get('userrole'));
+
+
+        localStorage.setItem('userid',this.data.body.obj[0].uId);
+        // console.log(this.data.body.obj.get('uId'));
+
         this.router.navigate(['/dashboard']);
       },
       error: err => {

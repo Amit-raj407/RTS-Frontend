@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Request } from '../model/Request';
@@ -8,7 +8,7 @@ import { Request } from '../model/Request';
 })
 export class RequestService {
 
-  private baseUrl = "";
+  private baseUrl = "http://localhost:9091/home/";
 
   constructor(private http: HttpClient) { }
 
@@ -26,15 +26,98 @@ export class RequestService {
 
   saveRequest(request: Request): Observable<any> {
     console.log('At ReqService'+request);
-    
+
     return this.http.post<any>(this.baseUrl+'', request, {
       observe: 'response'
     })
   }
 
-  getAllRequests(): Observable<any> {
-    return this.http.get<any>(this.baseUrl+'');
+  getAllRequestsForUser(): Observable<any> {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+    return this.http.get<any>(this.baseUrl+'viewallrequest/allassignstatussususer',httpOptions);
   }
+
+
+
+
+
+  getAllRequestsAssignedByUser(): Observable<any> {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+
+    return this.http.get<any>(this.baseUrl+'viewallrequest/allraisestatususer',httpOptions);
+  }
+
+  getAllClosedRequests(): Observable<any> {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+    return this.http.get<any>(this.baseUrl+'viewallrequest/allarriseclosedstatususer',httpOptions);
+  }
+
+  getAllRequestsForAdmin(): Observable<any> {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+
+    return this.http.get<any>(this.baseUrl+'viewallrequest/allassignstatus',httpOptions);
+  }
+
+
+  getAllRequestsAssignedByAdmin(): Observable<any> {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+
+    return this.http.get<any>(this.baseUrl+'viewallrequest/allarrisestatus',httpOptions);
+  }
+  getAllClosedRequestsAdmin(): Observable<any> {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+
+    return this.http.get<any>(this.baseUrl+'viewallrequest/allarriseclosedstatus',httpOptions);
+  }
+
 
 
 }

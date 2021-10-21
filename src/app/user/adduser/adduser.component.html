@@ -6,6 +6,10 @@
                     <div class="card-header">
                         <h1 class="card-title d-flex justify-content-center">New User
                         </h1>
+                        <div *ngIf="errorMessag!=''" class="text-danger mt-3">
+                            {{errorMessage}}
+                        </div>
+
                     </div>
                     <div class="card-body justify-content-center">
                         <form [formGroup]="createuser" (ngSubmit)="onSubmit()">
@@ -42,12 +46,14 @@
                                         <option value="false">InActive</option>
                                     </select> <label for="floatingSelect" style="margin-left: 2.2rem;">Status</label>
                                 </div>
+
                                 <div class="col-sm-11 text-center">
                                     <button class="btn btn-outline-primary float-left " type="submit" style="width: 45%">Save User</button>
-                                    <a class="btn btn-outline-secondary float-right" type="reset" style="width: 45%">RESET</a>
+                                    <button class="btn btn-outline-secondary float-right" type="reset" style="width: 45%">RESET</button>
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@ export class AdduserComponent implements OnInit {
     uIsActive: new FormControl('', Validators.compose([Validators.required])),
   });
 
-
+  errorMessag: string = '';
   errorMessage = {
     uName: [
       { type: 'required', message: 'Email is required.' },
@@ -51,9 +51,12 @@ export class AdduserComponent implements OnInit {
     this.service.createuserservice(this.createuser.value).subscribe(
       (response: any) => {
         console.log(response);
+        this.router.navigate(['/dashboard']);
       },
+
       (error: any) => {
         console.log(error);
+        this.errorMessag = error.message;
       }
     );
 

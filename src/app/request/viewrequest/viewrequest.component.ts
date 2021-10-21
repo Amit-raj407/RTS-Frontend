@@ -16,9 +16,9 @@ export class ViewrequestComponent implements OnInit {
   constructor(private requestService: RequestService) { }
 
   ngOnInit(): void {
-    this.sub = this.requestService.getAllRequests().subscribe({
+    this.sub = this.requestService.getAllRequestsForUser().subscribe({
       next: responseData => {
-        this.requests = responseData
+        this.requests = responseData.obj[0]
         console.log(this.requests);
       },
       error: err => {
