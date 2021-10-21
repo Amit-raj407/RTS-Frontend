@@ -1,4 +1,21 @@
 <div class="container-fluid">
+    <div class="btn-set">
+        <div>
+            <button class="btn btn-outline-primary" (click)="assignedRequests()">View Assigned Requests</button>
+            <button class="btn btn-outline-primary" (click)="raisedRequests()">View Raised Requests</button>
+            <button class="btn btn-outline-primary" (click)="closedRequests()">View Closed Requests</button>
+        </div>
+
+        <div *ngIf="userRole != 'user'">
+            <button class="btn btn-outline-primary" (click)="assignedRequestsAdminView()">View Admin Assigned Requests</button>
+            <button class="btn btn-outline-primary" (click)="raisedRequestsAdminView()">View Admin Raised Requests</button>
+            <button class="btn btn-outline-primary" (click)="closedRequestsAdminView()">View Admin Closed Requests</button>
+        </div>
+
+
+
+
+    </div>
     <table class="table mt-2">
         <thead>
             <tr class="text-uppercase table-active">
