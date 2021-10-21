@@ -6,6 +6,8 @@ import { UserComponent } from './user.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { EdituserComponent } from './edituser/edituser.component';
 import { ViewuserComponent } from './viewuser/viewuser.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { ViewuserComponent } from './viewuser/viewuser.component';
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    ReactiveFormsModule,
+    UserRoutingModule,
+    HttpClientModule
   ]
 })
 export class UserModule { }

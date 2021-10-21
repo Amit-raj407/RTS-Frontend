@@ -12,7 +12,7 @@ import { LoginService } from './service/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  
+
   user: User = new User;
   sub!: Subscription;
 
@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     console.log("click");
     console.log(this.loginForm.value);
-
     this.user = {
       uName: this.loginForm.get('email')?.value,
       uPassword: this.loginForm.get('password')?.value
@@ -51,16 +50,15 @@ export class LoginComponent implements OnInit {
     this.loginService.userAuth(this.user).subscribe({
       next: responseData => {
         this.data = responseData
-        console.log(this.data.headers.get('bearertoken'));
-        localStorage.setItem('token',this.data.headers.get('bearertoken'));
+        console.log(this.data);
+        console.log(this.data.headers.get('authorization'));
+        localStorage.setItem('token',this.data.headers.get('authorization'));
         this.router.navigate(['/dashboard']);
       },
       error: err => {
         console.log(err);
-        this.errorMessage = err.error.responseMessage;
-        
+        this.errorMessage = err.error.message;
       }
-
     });
 
 

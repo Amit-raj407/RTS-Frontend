@@ -1,1 +1,56 @@
-<p>adduser works!</p>
+<div class="content">
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="card" style="width: 39rem;" id="shadow">
+                    <div class="card-header">
+                        <h1 class="card-title d-flex justify-content-center">New User
+                        </h1>
+                    </div>
+                    <div class="card-body justify-content-center">
+                        <form [formGroup]="createuser" (ngSubmit)="onSubmit()">
+                            <div class='main '>
+                                <div class="input-group form-floating mb-2">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" aria-label="uName" aria-describedby="basic-addon1" formControlName="uName" [(ngModel)]="userdata.uName" name="uName" required required="required">
+                                    <label style="margin-left: 2.2rem;" for="floatingInput">UserName</label>
+                                </div>
+                                <div class="input-group form-floating mb-2">
+                                    <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                    <input type="text" class="form-control" aria-label="uFName" aria-describedby="basic-addon1" formControlName="uFName" [(ngModel)]="userdata.uFName" name="uFName" required="required">
+                                    <label style="margin-left: 2.2rem;" for="floatingInput">First Name</label>
+                                </div>
+                                <div class="input-group form-floating mb-2">
+                                    <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                    <input type="text" class="form-control" aria-label="uLName" aria-describedby="basic-addon1" formControlName="uLName" [(ngModel)]="userdata.uLName" name="uLName" required="required">
+                                    <label style="margin-left: 2.2rem;" for="floatingInput">Last Name</label>
+                                </div>
+                                <div class="input-group form-floating mb-2">
+                                    <span class="input-group-text"><i class="fas  fa-envelope-open-text"></i></span>
+                                    <input type="email" class="form-control" aria-label="uEmail" aria-describedby="basic-addon1" formControlName="uEmail" [(ngModel)]="userdata.uEmail" name="uEmail" required="required">
+                                    <label style="margin-left: 2.2rem;" for="floatingInput">User Email</label>
+                                </div>
+                                <div class="input-group form-floating mb-2">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    <input type="password" class="form-control" aria-label="uPassword" aria-describedby="basic-addon1" formControlName="uPassword" [(ngModel)]="userdata.uPassword" name="uPassword" required="required">
+                                    <label style="margin-left: 2.2rem;" for="floatingInput">User Password</label>
+                                </div>
+                                <div class="input-group form-floating mb-2">
+                                    <span class="input-group-text"><i class="fas fa-exclamation"></i></span>
+                                    <select class="form-select" formControlName="uIsActive" [(ngModel)]="userdata.uIsActive" name="uIsActive" aria-label="Floating label select example">
+                                        <option value="true" selected>Active</option>
+                                        <option value="false">InActive</option>
+                                    </select> <label for="floatingSelect" style="margin-left: 2.2rem;">Status</label>
+                                </div>
+                                <div class="col-sm-11 text-center">
+                                    <button class="btn btn-outline-primary float-left " type="submit" style="width: 45%">Save User</button>
+                                    <a class="btn btn-outline-secondary float-right" type="reset" style="width: 45%">RESET</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

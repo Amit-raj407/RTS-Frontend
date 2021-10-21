@@ -7,9 +7,7 @@ import { User } from '../models/User';
   providedIn: 'root'
 })
 export class LoginService {
-
-
-  private baseUrl = '';
+  private baseUrl = 'http://localhost:9091/home/';
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +18,7 @@ export class LoginService {
     //   console.log(resp.headers.get('token'));
     // });
     console.log(user);
-    return this.http.post<any>(this.baseUrl+'login', user, {
+    return this.http.post<any>(this.baseUrl+'userauthentication', user, {
       observe: 'response'
     });
   }
