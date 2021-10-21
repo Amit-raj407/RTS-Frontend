@@ -15,12 +15,15 @@ export class ViewrequestComponent implements OnInit {
 
   userRole: string | null = '';
 
+  loadedPage: Number = 1;
+
 
 
   constructor(private requestService: RequestService) { }
 
 
   assignedRequests(): void {
+    this.loadedPage = 1;
     this.requests = [];
     this.sub = this.requestService.getAllRequestsForUser().subscribe({
       next: responseData => {
@@ -35,6 +38,7 @@ export class ViewrequestComponent implements OnInit {
 
 
   raisedRequests(): void {
+    this.loadedPage = 2;
     this.requests = [];
     this.sub = this.requestService.getAllRequestsAssignedByUser().subscribe({
       next: responseData => {
@@ -49,6 +53,7 @@ export class ViewrequestComponent implements OnInit {
 
 
   closedRequests(): void {
+    this.loadedPage = 3;
     this.requests = [];
     this.sub = this.requestService.getAllClosedRequests().subscribe({
       next: responseData => {
@@ -63,6 +68,7 @@ export class ViewrequestComponent implements OnInit {
 
 
   assignedRequestsAdminView(): void {
+    this.loadedPage = 4;
     this.requests = [];
     this.sub = this.requestService.getAllRequestsForAdmin().subscribe({
       next: responseData => {
@@ -77,6 +83,7 @@ export class ViewrequestComponent implements OnInit {
 
 
   raisedRequestsAdminView(): void {
+    this.loadedPage = 5;;
     this.requests = [];
     this.sub = this.requestService.getAllRequestsAssignedByAdmin().subscribe({
       next: responseData => {
@@ -89,6 +96,7 @@ export class ViewrequestComponent implements OnInit {
     })
   }
   closedRequestsAdminView(): void {
+    this.loadedPage = 6;
     this.requests = [];
     this.sub = this.requestService.getAllClosedRequestsAdmin().subscribe({
       next: responseData => {

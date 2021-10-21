@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { RequestService } from '../service/request.service';
 
 @Component({
   selector: 'app-editrequest',
@@ -7,9 +9,66 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditrequestComponent implements OnInit {
 
-  constructor() { }
+  constructor(private requestService: RequestService) { }
+
+  
+  requestForm = new FormGroup({
+    reqtitle: new FormControl('', [
+      Validators.required
+    ]),
+    reqdesc: new FormControl('', [
+      Validators.required
+    ]),
+    severity1: new FormControl('', [
+      Validators.required
+    ]),
+    piority1: new FormControl('', [
+      Validators.required
+    ]),
+    reqdeptcode: new FormControl('', [
+      Validators.required
+    ]),
+    reqassignto: new FormControl('', [
+      Validators.required
+    ]),
+    reqinicomment: new FormControl('', [
+      Validators.required
+    ]),
+
+  });
+  
+  updateValuesInForm(): void {
+    this.requestForm.setValue({
+      reqtitle: '',
+      reqdesc: '',
+      severity1: '',
+      piority1: '',
+      reqdeptcode: '',
+      reqassignto: '',
+      reqinicomment: '',
+    })
+  }
+
+  updateRequest(): void {
+    this.requestService.saveRequest(this.requestForm.value).subscribe({
+      next: responseData => {
+        console.log(responseData);  
+      },
+      error: err => {
+        console.log(err);
+        
+      }
+    })
+  }
 
   ngOnInit(): void {
+    // Get Entire Request Object By Id and call
+    // the updateValuesInForm() method passing the object having the values
+
+    // How to get Request Id in View Page as we are not storing the requestId anywhere
+
+    // RequestCode is unique. We can use it to retrive data from backend
   }
+
 
 }

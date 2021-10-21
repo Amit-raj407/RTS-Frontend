@@ -1,1 +1,142 @@
-<p>editrequest works!</p>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <h1 class="text-center bg-light mb-3">Edit Request</h1>
+            <form [formGroup]="requestForm" (ngSubmit)="updateRequest()" enctype="multipart/form-data">
+
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="rqstTitle">Request Title<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="title" id="rqstTitle" formControlName="reqtitle"
+                            placeholder="Request Title">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="rqstDesc">Request Description<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="desc" id="rqstDesc" formControlName="reqdesc"
+                            placeholder="Request Description">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="deptSelect">Assigned To Dept<span class="text-danger">*</span></label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <select class="form-select" name="rqstDept" id="deptSelect" formControlName="reqdeptcode">
+                            <option value="" selected disabled>-Select-</option>
+                            <option value="MM0001">1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="userSelect">Assigned To User<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-9">
+                        <select class="form-select" formControlName="reqassignto" name="assignedTo" id="userSelect">
+                            <option value="" selected disabled>-Select-</option>
+                            <option value="43">1</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="severity">Severity<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4">
+                        <select name="" class="form-select" formControlName="severity1" id="severity">
+                            <option value="" selected disabled>-Select-</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 text-center">
+                        <label for="priority">Priority<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <select name="" class="form-select" formControlName="piority1" id="priority">
+                            <option value="" selected disabled>-Select-</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="rqstNum">Request Number</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="form-control" type="text" name="rqstNum" id="" value="Auto Generated" readonly>
+                    </div>
+
+                    <div class="col-md-2 text-center">
+                        <label for="status">Status<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="" id="status" value="New Request" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="comments">Comments</label>
+                    </div>
+                    <div class="col-md-9">
+                        <!-- <input class="form-control" type="text" name="" id="comments" placeholder="Comments"> -->
+                        <textarea class="form-control" name="comments" id="summernote" formControlName="reqinicomment"
+                            placeholder="Comments"></textarea>
+                    </div>
+
+                </div>
+                <div class="row text-center mb-3">
+                    <div class="col-md-6">
+                        <button class="btn btn-success" [disabled]="!requestForm.valid" id="btn-submit">Save</button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center text-danger"></div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <h1 class="text-center bg-light mb-3">Edit History</h1>
+            <table class="table">
+                <thead>
+                    <tr class="text-uppercase table-active">
+                        <th scope="col">Request Number</th>
+                        <th scope="col">Request Title</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Assigned to</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr *ngFor='let request of requests'>
+                        <td><a>{{request.reqcode}}</a></td>
+                        <td>{{request.reqtitle}}</td>
+                        <td>{{request.status_desc}}</td>
+                        <td>{{request.reqassignto}}</td>
+                        <td>{{request.createdBy}}</td>
+                        <td>{{request.severity1}}</td>
+                        <td>{{request.piority1}}</td>
+                        <td>{{request.date}}</td>
+                        <td>{{request.age}}</td>
+        
+        
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

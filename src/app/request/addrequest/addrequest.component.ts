@@ -45,22 +45,23 @@ export class AddrequestComponent implements OnInit {
 
   onRequestFormSubmit() {
     console.log(this.requestForm.value);
-    this.request = {
-      reqdeptcode: this.requestForm.get('assignedDept')?.value,
-      reqcode: '',
-      reqtitle: this.requestForm.get('reqTitle')?.value,
-      reqdesc: this.requestForm.get('reqDesc')?.value,
-      reqassignto: this.requestForm.get('assignedUser')?.value,
-      // reqassigndate: new Date,
-      reqinicomment: this.requestForm.get('initialComments')?.value,
-      severity: this.requestForm.get('severity')?.value,
-      piority: this.requestForm.get('priority')?.value,
-      recreatedby: 1
-    }
+    // this.request = {
+    //   reqdeptcode: this.requestForm.get('assignedDept')?.value,
+    //   reqcode: '',
+    //   reqtitle: this.requestForm.get('reqTitle')?.value,
+    //   reqdesc: this.requestForm.get('reqDesc')?.value,
+    //   reqassignto: this.requestForm.get('assignedUser')?.value,
+    //   // reqassigndate: new Date,
+    //   reqinicomment: this.requestForm.get('initialComments')?.value,
+    //   severity: this.requestForm.get('severity')?.value,
+    //   piority: this.requestForm.get('priority')?.value,
+    //   recreatedby: 1
+    // }
 
     this.sub = this.requestService.saveRequest(this.requestForm.value).subscribe({
       next: responseData => {
         console.log(responseData);
+        this.router.navigate(['../dashboard/request']);
       },
       error: err => {
         console.log(err);

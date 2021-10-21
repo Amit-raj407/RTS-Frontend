@@ -17,20 +17,21 @@
     transform: scale(1.0);
     transition: 0.5s;
     transition-timing-function: ease-in-out;
-    background-color: crimson;
+    background-color: rgb(196, 149, 159);
 }
 
 .box {
     margin-top: 0px;
     display: inline-block;
     justify-content: center;
+    font-size: calc(9.375rem + 1.5vw);
 }
 
 .chart_card:hover h4 {
     transform: scale(1.05);
     transition: 0.5s;
     transition-timing-function: ease-in-out;
-    color: blue;
+    color: rgb(255, 255, 255);
 }
 
 .chart_card:hover h1 {
