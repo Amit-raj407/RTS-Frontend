@@ -39,4 +39,19 @@ export class UserService {
       httpOptions
     );
   }
+
+  getUserByUsername(username:string | null)
+  {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+    return this.http.get<any>(
+      `${this.baseUrl}getuser/${username}`,httpOptions);
+  }
 }

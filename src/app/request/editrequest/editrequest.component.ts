@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { RequestService } from '../service/request.service';
 
 @Component({
@@ -9,9 +10,13 @@ import { RequestService } from '../service/request.service';
 })
 export class EditrequestComponent implements OnInit {
 
-  constructor(private requestService: RequestService) { }
+  constructor(private requestService: RequestService, private _activatedRouter: ActivatedRoute) { }
 
-  
+
+  reqcode: string | null = '';
+
+
+
   requestForm = new FormGroup({
     reqid: new FormControl(''),
     reqtitle: new FormControl('', [
@@ -36,38 +41,67 @@ export class EditrequestComponent implements OnInit {
     reqinicomment: new FormControl('', [
       Validators.required
     ]),
-    statusEntity: new FormGroup({
-      sestdesc: new FormControl('')
-    })
+    statusEntity: new FormArray([
+      new FormGroup({
+        sestdesc: new FormControl('')
+      })
+    ])
+
   });
-  
-  updateValuesInForm(): void {
-    this.requestForm.setValue({
-      reqtitle: '',
-      reqdesc: '',
-      severity1: '',
-      piority1: '',
-      reqdeptcode: '',
-      reqassignto: '',
-      reqinicomment: '',
-    })
+
+  updateValuesInForm(reqValues: any): void {
+
+    this.requestForm.patchValue({
+      reqid: reqValues.reqid,
+      reqtitle: reqValues.reqtitle,
+      reqdesc: reqValues.reqdesc,
+      reqcode: reqValues.reqcode,
+      severity: reqValues.severity,
+      piority: reqValues.piority,
+      reqdeptcode: reqValues.reqdeptcode,
+      reqassignto: reqValues.reqassignto,
+      reqinicomment: reqValues.reqinicomment,
+      statusEntity: {
+        // sestdesc: reqValues.statusEntity[statusLength-1].sestdesc
+        sestdesc: 'Pending'
+      }
+    });
+
+    let statusLength = reqValues.statusEntity.length;
+    // this.requestForm.patchValue({
+
+    // })
+
   }
 
   updateRequest(): void {
     console.log(this.requestForm.value);
-    
-    this.requestService.saveRequest(this.requestForm.value).subscribe({
+
+    this.requestService.updateRequest(this.requestForm.value).subscribe({
       next: responseData => {
-        console.log(responseData);  
+        console.log(responseData);
       },
       error: err => {
         console.log(err);
-        
+
       }
     })
   }
 
   ngOnInit(): void {
+
+
+    this._activatedRouter.paramMap.subscribe(param => this.reqcode = (param.get('reqcode')));
+    this.requestService.getRequestByReqCode(this.reqcode).subscribe({
+      next: responseData => {
+        console.log(responseData.obj[0]);
+        this.updateValuesInForm(responseData.obj[0]);
+      },
+      error: err => {
+        console.log(err);
+
+      }
+    })
     // Get Entire Request Object By Id and call
     // the updateValuesInForm() method passing the object having the values
 

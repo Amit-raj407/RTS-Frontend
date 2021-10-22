@@ -137,5 +137,37 @@ export class RequestService {
   }
 
 
+  getRequestByReqCode(reqCode: string | null): Observable<any> {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+
+    return this.http.get<any>(`${this.baseUrl}getrequestbycode/${reqCode}`, httpOptions);
+  }
+
+
+
+  updateRequest(request: any): Observable<any> {
+    console.log('At ReqService'+JSON.stringify(request));
+
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+
+    return this.http.post<any>(this.baseUrl+'updaterequest', JSON.stringify(request), httpOptions);
+  }
+
 
 }

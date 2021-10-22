@@ -9,8 +9,7 @@
                         <label for="rqstTitle">Request Title<span class="text-danger">*</span></label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="title" id="rqstTitle" formControlName="reqtitle"
-                            placeholder="Request Title">
+                        <input type="text" class="form-control" name="title" id="rqstTitle" formControlName="reqtitle" placeholder="Request Title">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -18,8 +17,7 @@
                         <label for="rqstDesc">Request Description<span class="text-danger">*</span></label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="desc" id="rqstDesc" formControlName="reqdesc"
-                            placeholder="Request Description">
+                        <input type="text" class="form-control" name="desc" id="rqstDesc" formControlName="reqdesc" placeholder="Request Description">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -82,17 +80,17 @@
                     <div class="col-md-2">
                         <label for="status">Status<span class="text-danger">*</span></label>
                     </div>
-                    <div formGroupName="statusEntity" class="col-md-3 text-center">
+                    <div formArrayName="statusEntity" class="col-md-3 text-center">
                         <div class="">
                             <select name="" class="form-select" formControlName="sestdesc" id="sestdesc">
-                                <option value="" selected disabled>-Select-</option>
-                                <option value="1">Pending</option>
-                                <option value="2">In Progress</option>
-                                <option value="3">Completed</option>
+                                <option value="NEW REQUEST">NEW REQUEST</option>
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
                             </select>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-3">
@@ -100,8 +98,7 @@
                     </div>
                     <div class="col-md-9">
                         <!-- <input class="form-control" type="text" name="" id="comments" placeholder="Comments"> -->
-                        <textarea class="form-control" name="comments" id="summernote" formControlName="reqinicomment"
-                            placeholder="Comments"></textarea>
+                        <textarea class="form-control" name="comments" id="summernote" formControlName="reqinicomment" placeholder="Comments"></textarea>
                     </div>
 
                 </div>
@@ -138,8 +135,8 @@
                         <td>{{request.piority1}}</td>
                         <td>{{request.date}}</td>
                         <td>{{request.age}}</td>
-        
-        
+
+
                     </tr> -->
                 </tbody>
             </table>

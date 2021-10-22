@@ -19,7 +19,9 @@
                         <tr *ngFor='let user of userList'>
                             <td scope="row">{{user.uFName}}</td>
                             <td scope="row">{{user.uLName}}</td>
-                            <td scope="row">{{user.uName}}</td>
+                            <td scope="row">
+                                <a [routerLink]="['../edit',user.uName ]">{{user.uName}}</a>
+                            </td>
                             <td scope="row">{{user.uEmail}}</td>
                             <td scope="row">{{user.uCDate}}</td>
                             <td scope="row">{{user.uCBy}}</td>

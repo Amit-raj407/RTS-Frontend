@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '',  redirectTo: 'view', pathMatch: 'full' },
   { path: 'view', component: ViewrequestComponent },
   { path: 'add', component: AddrequestComponent },
-  { path: 'edit', component: EditrequestComponent }
+  { path: 'edit/:reqcode', component: EditrequestComponent }
 ];
 
 @NgModule({
