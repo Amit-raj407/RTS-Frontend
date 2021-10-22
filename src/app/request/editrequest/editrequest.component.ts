@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Request } from '../model/Request';
+import { statusEntity } from '../model/statusEntity';
 import { RequestService } from '../service/request.service';
 
 @Component({
@@ -11,26 +13,31 @@ import { RequestService } from '../service/request.service';
 export class EditrequestComponent implements OnInit {
 
   constructor(
-      private requestService: RequestService, 
-      private _activatedRouter: ActivatedRoute,
-      private fb: FormBuilder
-    ) { }
+    private requestService: RequestService,
+    private _activatedRouter: ActivatedRoute,
+    private fb: FormBuilder
+  ) { }
 
 
   reqcode: string | null = '';
 
-    // requestForm = this.fb.group({
-    //   reqid: [''],
-    //   reqtitle: ['', Validators.required],
-    //   reqcode: ['', Validators.required],
-    //   reqdesc: ['', Validators.required],
-    //   severity: ['', Validators.required],
-    //   piority: ['', Validators.required],
-    //   reqdeptcode: ['', Validators.required],
-    //   reqassignto: ['', Validators.required],
-    //   reqinicomment: ['', Validators.required],
-    //   trStatus: ['']
-    // })
+  request!: Request;
+
+  statusEntity: statusEntity[] = [];
+  status!: statusEntity;
+
+  // requestForm = this.fb.group({
+  //   reqid: [''],
+  //   reqtitle: ['', Validators.required],
+  //   reqcode: ['', Validators.required],
+  //   reqdesc: ['', Validators.required],
+  //   severity: ['', Validators.required],
+  //   piority: ['', Validators.required],
+  //   reqdeptcode: ['', Validators.required],
+  //   reqassignto: ['', Validators.required],
+  //   reqinicomment: ['', Validators.required],
+  //   trStatus: ['']
+  // })
 
   requestForm = new FormGroup({
     reqid: new FormControl(''),
@@ -59,7 +66,7 @@ export class EditrequestComponent implements OnInit {
     trStatus: new FormControl('', Validators.required),
     // statusEntity: new FormArray([
     //   new FormGroup({
-        
+
     //   })
     // ])
 
@@ -90,7 +97,33 @@ export class EditrequestComponent implements OnInit {
   updateRequest(): void {
     console.log(this.requestForm.value);
 
-    this.requestService.updateRequest(this.requestForm.value).subscribe({
+    this.status = {
+      sestdesc: this.requestForm.get('trStatus')?.value
+    }
+
+    this.statusEntity.push(this.status);
+
+    this.request = {
+      reqid: this.requestForm.get('reqid')?.value,
+      reqdeptcode: this.requestForm.get('reqdeptcode')?.value,
+      reqcode:  this.requestForm.get('reqcode')?.value,
+      reqtitle:  this.requestForm.get('reqtitle')?.value,
+      reqdesc:  this.requestForm.get('reqdesc')?.value,
+      reqassignto:  this.requestForm.get('reqassignto')?.value,
+
+
+      reqinicomment:  this.requestForm.get('reqinicomment')?.value,
+
+      severity:  this.requestForm.get('severity')?.value,
+      piority:  this.requestForm.get('piority')?.value,
+
+      statusEntity: this.statusEntity 
+    }
+
+    console.log(JSON.stringify(this.request));
+    
+
+    this.requestService.updateRequest(this.request).subscribe({
       next: responseData => {
         console.log(responseData);
       },

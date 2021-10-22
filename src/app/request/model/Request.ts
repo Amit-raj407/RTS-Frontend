@@ -1,4 +1,8 @@
+import { statusEntity } from "./statusEntity";
+
 export class Request {
+    
+    reqid!: Number;
     reqdeptcode!: string;
     reqcode!: string;
     reqtitle!: string;
@@ -11,5 +15,5 @@ export class Request {
     severity!: Number;
     piority!: Number;
 
-    recreatedby!: Number;
+    statusEntity!: statusEntity[];
 }
