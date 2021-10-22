@@ -76,6 +76,10 @@ export class EditrequestComponent implements OnInit {
   });
 
   updateValuesInForm(reqValues: any): void {
+    let statusEntityLength = reqValues.statusEntity.length;
+
+    // console.log(reqValues.statusEntity[]);
+
 
     this.requestForm.patchValue({
       reqid: reqValues.reqid,
@@ -87,7 +91,7 @@ export class EditrequestComponent implements OnInit {
       reqdeptcode: reqValues.reqdeptcode,
       reqassignto: reqValues.reqassignto,
       reqinicomment: reqValues.reqinicomment,
-      // trStatus: req
+      trStatus: reqValues.statusEntity[statusEntityLength-1].sestdesc
     });
 
     this.buildUserDropDown(reqValues.reqdeptcode);
