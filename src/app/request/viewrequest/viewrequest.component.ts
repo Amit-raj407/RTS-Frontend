@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { Request } from '../model/Request';
 import { RequestService } from '../service/request.service';
 
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-viewrequest',
   templateUrl: './viewrequest.component.html',
@@ -70,15 +72,31 @@ export class ViewrequestComponent implements OnInit {
   assignedRequestsAdminView(): void {
     this.loadedPage = 4;
     this.requests = [];
-    this.sub = this.requestService.getAllRequestsForAdmin().subscribe({
-      next: responseData => {
-        this.requests = responseData.obj[0]
-        console.log(this.requests);
-      },
-      error: err => {
-        console.log(err);
+    Swal.fire({
+      title: 'Please Wait',
+      allowEscapeKey: false,
+      allowOutsideClick: true,
+      background: '#fff',
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+        this.sub = this.requestService.getAllRequestsForAdmin().subscribe({
+          next: responseData => {
+            this.requests = responseData.obj[0]
+            console.log(this.requests);
+            Swal.close();
+          },
+          error: err => {
+            console.log(err);
+            Swal.fire({
+              text: 'Error in Fetching Data',
+              icon: 'warning'
+            })
+          }
+        })
       }
     })
+    
   }
 
 
