@@ -1,1 +1,48 @@
-<p>adddept works!</p>
+<div class="container">
+    <div class="row  d-flex justify-content-center">
+        <div class="col-12  d-flex justify-content-center">
+            <div class="card" style="width: 39rem;" id="shadow">
+                <div class="card-header">
+                    <h1 class="card-title d-flex justify-content-center">Create Department
+                    </h1>
+                </div>
+                <div class="card-body justify-content-center">
+                    <form [formGroup]="createDepartmentData" (ngSubmit)="onDepartmentSubmit()">
+                        <div class="input-group form-floating mb-2">
+                            <span class="input-group-text"><i class="fas fa-building"></i></span>
+                            <input type="text" class="form-control" aria-label="decode" aria-describedby="basic-addon1" formControlName="decode" name="decode" required="required">
+                            <label style="margin-left: 2.2rem;" for="floatingInput">Department Code</label>
+                        </div>
+
+                        <div class="input-group form-floating mb-2">
+                            <span class="input-group-text"><i class="fas fa-building"></i></span>
+                            <input type="text" class="form-control" aria-label="dename" aria-describedby="basic-addon1" formControlName="dename" name="dename" required="required">
+                            <label style="margin-left: 2.2rem;" for="floatingInput">Department Name</label>
+                        </div>
+
+                        <div class="input-group form-floating mb-2">
+                            <span class="input-group-text"><i class="fas fa-building"></i></span>
+                            <select class="form-select" aria-label="Default select example" name="depcode" formControlName="depcode">
+                                    <option value="abvcde">abvcdc</option>
+                                </select>
+                            <label style="margin-left: 2.2rem;" for="floatingInput">Select Department</label>
+                        </div>
+
+                        <div class="input-group form-floating mb-2">
+                            <span class="input-group-text"><i class="fas fa-exclamation"></i></span>
+                            <select class="form-select" name="deisactive" formControlName="deisactive" aria-label="Floating label select example">
+                                    <option value="true">Active</option>
+                                    <option value="false">Inactive</option>
+                                </select> <label for="floatingSelect" style="margin-left: 2.2rem;">Status</label>
+                        </div>
+
+                        <div class="col-sm-11 text-center">
+                            <button class="btn btn-outline-primary float-left " id="savedept" type="submit" style="width: 45%">Save Department</button>
+                            <button class="btn btn-outline-secondary float-right" type="reset" style="width: 45%">RESET</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

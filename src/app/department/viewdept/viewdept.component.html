@@ -1,1 +1,32 @@
-<p>viewdept works!</p>
+<div class="content">
+    <div class="card mr-3 ml-3" id="shadow" style="width: 100%;">
+        <div class="card-body" id="bd01">
+            <div class="table-responsive-md">
+                <table id="viewdept" class="display" style="width: 100%;">
+                    <thead>
+                        <tr class="text-uppercase">
+                            <th scope="col" style="display:none">Dept_id</th>
+                            <th scope="col">dept_code</th>
+                            <th scope="col">department_name</th>
+                            <th scope="col">parent_department_code</th>
+                            <th scope="col">created_date</th>
+                            <th scope="col">created_By</th>
+                            <th scope="col" style="display:none">is_dept_active</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let dept of deptList'>
+                            <td scope="row" style="display:none">{{dept.deid}}</td>
+                            <td scope="row">{{dept.decode}}</td>
+                            <td scope="row">{{dept.dename}}</td>
+                            <td scope="row">{{dept.depcode}}</td>
+                            <td scope="row">{{dept.decdate}}</td>
+                            <td scope="row" style="display:none">{{dept.decreatedby}}</td>
+                            <td scope="row">{{dept.deisactive}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
