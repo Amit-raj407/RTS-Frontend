@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 import { Request } from '../model/Request';
 import { RequestService } from '../service/request.service';
+
+
 
 @Component({
   selector: 'app-addrequest',
@@ -61,13 +64,38 @@ export class AddrequestComponent implements OnInit {
     //   recreatedby: 1
     // }
 
-    this.sub = this.requestService.saveRequest(this.requestForm.value).subscribe({
-      next: responseData => {
-        console.log(responseData);
-        this.router.navigate(['../dashboard/request']);
-      },
-      error: err => {
-        console.log(err);
+    Swal.fire({
+      title: 'Please Wait',
+      allowEscapeKey: false,
+      allowOutsideClick: true,
+      background: '#fff',
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+
+        this.sub = this.requestService.saveRequest(this.requestForm.value).subscribe({
+          next: responseData => {
+            console.log(responseData);
+
+            if (responseData) {
+              Swal.fire({
+                title: 'Request Added',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500,
+              }).then(() => {
+                this.router.navigate(['../dashboard/request']);
+              })
+            }
+          },
+          error: err => {
+            console.log(err);
+            Swal.fire({
+              text: 'Error in Adding Request',
+              icon: 'warning'
+            })
+          }
+        })
       }
     })
   }
