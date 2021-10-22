@@ -19,10 +19,10 @@ export class EditrequestComponent implements OnInit {
     reqdesc: new FormControl('', [
       Validators.required
     ]),
-    severity1: new FormControl('', [
+    severity: new FormControl('', [
       Validators.required
     ]),
-    piority1: new FormControl('', [
+    piority: new FormControl('', [
       Validators.required
     ]),
     reqdeptcode: new FormControl('', [
