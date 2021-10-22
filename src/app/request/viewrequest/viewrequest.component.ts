@@ -39,9 +39,14 @@ export class ViewrequestComponent implements OnInit {
           next: responseData => {
             this.requests = responseData.obj[0]
             console.log(this.requests);
+            Swal.close();
           },
           error: err => {
             console.log(err);
+            Swal.fire({
+              text: 'Error in Fetching Data',
+              icon: 'warning'
+            })
           }
         })
       }
@@ -65,9 +70,14 @@ export class ViewrequestComponent implements OnInit {
           next: responseData => {
             this.requests = responseData.obj[0]
             console.log(this.requests);
+            Swal.close();
           },
           error: err => {
             console.log(err);
+            Swal.fire({
+              text: 'Error in Fetching Data',
+              icon: 'warning'
+            })
           }
         })
       }
@@ -90,9 +100,14 @@ export class ViewrequestComponent implements OnInit {
           next: responseData => {
             this.requests = responseData.obj[0]
             console.log(this.requests);
+            Swal.close();
           },
           error: err => {
             console.log(err);
+            Swal.fire({
+              text: 'Error in Fetching Data',
+              icon: 'warning'
+            })
           }
         })
       }
@@ -146,9 +161,14 @@ export class ViewrequestComponent implements OnInit {
           next: responseData => {
             this.requests = responseData.obj[0]
             console.log(this.requests);
+            Swal.close();
           },
           error: err => {
             console.log(err);
+            Swal.fire({
+              text: 'Error in Fetching Data',
+              icon: 'warning'
+            })
           }
         })
       }
@@ -169,9 +189,14 @@ export class ViewrequestComponent implements OnInit {
           next: responseData => {
             this.requests = responseData.obj[0]
             console.log(this.requests);
+            Swal.close();
           },
           error: err => {
             console.log(err);
+            Swal.fire({
+              text: 'Error in Fetching Data',
+              icon: 'warning'
+            })
           }
         })
       }
