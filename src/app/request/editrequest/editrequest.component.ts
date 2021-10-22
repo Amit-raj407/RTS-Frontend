@@ -93,7 +93,8 @@ export class EditrequestComponent implements OnInit {
       piority: reqValues.piority,
       reqdeptcode: reqValues.reqdeptcode,
       reqassignto: reqValues.reqassignto,
-      reqinicomment: reqValues.cCommentsEntity[commentHistoryLength-1].cmdesc,
+      reqinicomment: reqValues.reqinicomment,
+      //reqinicomment: reqValues.cCommentsEntity[commentHistoryLength-1].cmdesc,
       trStatus: reqValues.statusEntity[statusEntityLength-1].sestdesc
     });
 
