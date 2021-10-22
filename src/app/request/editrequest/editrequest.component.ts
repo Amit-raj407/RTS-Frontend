@@ -169,6 +169,18 @@ export class EditrequestComponent implements OnInit {
     });
   }
 
+  buildCommentHistory(): void {
+    this.requestService.getRequestCommentHistory(this.reqcode).subscribe({
+      next: responseData => {
+        console.log(responseData);
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
+  }
+
+
   ngOnInit(): void {
 
 
@@ -183,6 +195,7 @@ export class EditrequestComponent implements OnInit {
 
       }
     });
+    this.buildCommentHistory();
 
     this.buildDeptDropDown();
     // Get Entire Request Object By Id and call

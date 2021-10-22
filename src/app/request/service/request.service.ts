@@ -201,4 +201,19 @@ export class RequestService {
   }
 
 
+  getRequestCommentHistory(reqcode: string | null): Observable<any> {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+
+    return this.http.get<any>(`${this.baseUrl}getrequestallhistory/${reqcode}`)
+  }
+
+
 }
