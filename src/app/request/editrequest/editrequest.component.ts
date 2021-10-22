@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Request } from '../model/Request';
 import { statusEntity } from '../model/statusEntity';
 import { RequestService } from '../service/request.service';
@@ -15,7 +16,8 @@ export class EditrequestComponent implements OnInit {
   constructor(
     private requestService: RequestService,
     private _activatedRouter: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
 
@@ -135,17 +137,52 @@ export class EditrequestComponent implements OnInit {
 
     console.log(JSON.stringify(this.request));
 
+    Swal.fire({
+      title: 'Please Wait',
+      allowEscapeKey: false,
+      allowOutsideClick: true,
+      background: '#fff',
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
 
-    this.requestService.updateRequest(this.request).subscribe({
-      next: responseData => {
-        console.log(responseData);
-        this.buildCommentHistory();
-      },
-      error: err => {
-        console.log(err);
+        this.requestService.updateRequest(this.request).subscribe({
+          next: responseData => {
+            console.log(responseData);
 
+            if (responseData) {
+              Swal.fire({
+                title: 'Request Updated',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500,
+              }).then(() => {
+                this.buildCommentHistory();
+              })
+            }
+          },
+          error: err => {
+            console.log(err);
+            Swal.fire({
+              text: 'Error in Updating Request',
+              icon: 'warning'
+            })
+          }
+        })
       }
     })
+
+    // this.requestService.updateRequest(this.request).subscribe({
+    //   next: responseData => {
+    //     console.log(responseData);
+    //     this.buildCommentHistory();
+    //   },
+    //   error: err => {
+    //     console.log(err);
+
+    //   }
+    // })
+  
   }
 
 
