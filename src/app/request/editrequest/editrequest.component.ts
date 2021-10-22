@@ -13,9 +13,11 @@ export class EditrequestComponent implements OnInit {
 
   
   requestForm = new FormGroup({
+    reqid: new FormControl(''),
     reqtitle: new FormControl('', [
       Validators.required
     ]),
+    reqcode: new FormControl(''),
     reqdesc: new FormControl('', [
       Validators.required
     ]),
@@ -34,7 +36,9 @@ export class EditrequestComponent implements OnInit {
     reqinicomment: new FormControl('', [
       Validators.required
     ]),
-
+    statusEntity: new FormGroup({
+      sestdesc: new FormControl('')
+    })
   });
   
   updateValuesInForm(): void {
@@ -50,6 +54,8 @@ export class EditrequestComponent implements OnInit {
   }
 
   updateRequest(): void {
+    console.log(this.requestForm.value);
+    
     this.requestService.saveRequest(this.requestForm.value).subscribe({
       next: responseData => {
         console.log(responseData);  
