@@ -54,4 +54,23 @@ export class UserService {
     return this.http.get<any>(
       `${this.baseUrl}getuser/${username}`,httpOptions);
   }
+
+  updateUser(userUpdateData: any): Observable<any>
+  {
+    const httpHeaders = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+    return this.http.post(`${this.baseUrl}updateusers`, userUpdateData, httpOptions);
+
+  }
+
+
+
 }

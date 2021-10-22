@@ -18,7 +18,8 @@ export class AddrequestComponent implements OnInit {
 
   request: Request = new Request;
 
-  deptList: string[] = [];
+  deptList: any[] = [];
+  userList: any[] = [];
 
   requestForm = new FormGroup({
     reqtitle: new FormControl('', [
@@ -71,15 +72,35 @@ export class AddrequestComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
+
+
+  buildUserDropDown(deptCode: string): void {
+    this.requestService.getAllUsersByDept(deptCode).subscribe({
+      next: responseData => {
+        console.log(responseData.obj[0]);
+        this.userList = responseData.obj[0];
+      },
+      error: err => {
+        console.log(err);
+
+      }
+    })
+  }
+
+  buildDeptDropDown(): void {
     this.requestService.getAllDepartments().subscribe({
       next: responseData => {
-        console.log(responseData);
+        console.log(responseData.obj[0]);
+        this.deptList = responseData.obj[0];
       },
       error: err => {
         console.log(err);
       }
-    })
+    });
+  }
+
+  ngOnInit(): void {
+    this.buildDeptDropDown();
   }
 
 }

@@ -186,6 +186,7 @@ export class RequestService {
 
 
   getAllUsersByDept(deptCode: string): Observable<any> {
+    console.log(deptCode);
 
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',

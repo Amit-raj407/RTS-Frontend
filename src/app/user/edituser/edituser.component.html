@@ -1,61 +1,56 @@
-<div class="container d-flex justify-content-center ">
-    <div class="row  d-flex justify-content-center">
-        <div class="col-12  d-flex justify-content-center">
-            <div class="card" style="width: 39rem;" id="shadow">
-                <div class="card-header">
-                    <h1 class="card-title d-flex justify-content-center">Update User
-                    </h1>
-                    <a class="float-right" type="reset" id="myBtn2">Manage Access</a>
-                </div>
+<div class="content">
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="card" style="width: 39rem;" id="shadow">
+                    <div class="card-header">
+                        <h1 class="card-title d-flex justify-content-center">Edit User
+                        </h1>
+                    </div>
+                    <div class="card-body justify-content-center">
+                        <form [formGroup]="userForm" (ngSubmit)="userUpdateSubmit()">
+                            <div class='main '>
+                                <div class="input-group form-floating mb-2">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" aria-label="uName" aria-describedby="basic-addon1" formControlName="uName" name="uName" required required="required">
+                                    <label style="margin-left: 2.2rem;" for="floatingInput">UserName</label>
+                                </div>
+                                <div class="input-group form-floating mb-2">
+                                    <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                    <input type="text" class="form-control" aria-label="uFName" aria-describedby="basic-addon1" formControlName="uFName" name="uFName" required="required">
+                                    <label style="margin-left: 2.2rem;" for="floatingInput">First Name</label>
+                                </div>
+                                <div class="input-group form-floating mb-2">
+                                    <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                    <input type="text" class="form-control" aria-label="uLName" aria-describedby="basic-addon1" formControlName="uLName" name="uLName" required="required">
+                                    <label style="margin-left: 2.2rem;" for="floatingInput">Last Name</label>
+                                </div>
+                                <div class="input-group form-floating mb-2">
+                                    <span class="input-group-text"><i class="fas  fa-envelope-open-text"></i></span>
+                                    <input type="email" class="form-control" aria-label="uEmail" aria-describedby="basic-addon1" formControlName="uEmail" name="uEmail" required="required">
+                                    <label style="margin-left: 2.2rem;" for="floatingInput">User Email</label>
+                                </div>
+                                <div class="input-group form-floating mb-2">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    <input type="password" class="form-control" aria-label="uPassword" aria-describedby="basic-addon1" formControlName="uPassword" name="uPassword" required="required">
+                                    <label style="margin-left: 2.2rem;" for="floatingInput">User Password</label>
+                                </div>
+                                <div class="input-group form-floating mb-2">
+                                    <span class="input-group-text"><i class="fas fa-exclamation"></i></span>
+                                    <select class="form-select" formControlName="uIsActive" name="uIsActive" aria-label="Floating label select example">
+                                      <option value="true" selected>Active</option>
+                                      <option value="false">InActive</option>
+                                  </select> <label for="floatingSelect" style="margin-left: 2.2rem;">Status</label>
+                                </div>
 
-                <div class="card-body justify-content-center">
-                    <form class="main" method="post" novalidate="novalidate">
-                        <div class='main '>
-                            <div class="input-group form-floating mb-2">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" aria-label="uName" aria-describedby="basic-addon1" id="uName" name="uName"> <label style="margin-left: 2.2rem;" for="floatingInput">UserName</label>
+                                <div class="col-sm-11 text-center">
+                                    <button class="btn btn-outline-primary float-left " type="submit" style="width: 45%">Save User</button>
+                                    <button class="btn btn-outline-secondary float-right" type="reset" style="width: 45%">RESET</button>
+                                </div>
                             </div>
+                        </form>
 
-                            <div class="input-group form-floating mb-2">
-                                <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
-                                <input type="text" class="form-control" aria-label="uFName" aria-describedby="basic-addon1" id="uFName" name="uFName" th:field="*{uFName}" autocomplete="off" oninput="usernamefiledvalidation()"> <label style="margin-left: 2.2rem;"
-                                    for="floatingInput">First Name</label>
-                            </div>
-
-
-                            <div class="input-group form-floating mb-2">
-                                <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
-                                <input type="text" class="form-control" aria-label="uLName" aria-describedby="basic-addon1" id="uLName" name="uLName"> <label style="margin-left: 2.2rem;" for="floatingInput">Last    Name</label>
-                            </div>
-
-                            <div class="input-group form-floating mb-2">
-                                <span class="input-group-text"><i class="fas fa-envelope-open-text"></i></span>
-                                <input type="email" class="form-control" aria-label="uEmail" aria-describedby="basic-addon1" id="uEmail" name="uEmail">
-                                <label style="margin-left: 2.2rem" for="floatingInput">User Email</label>
-                            </div>
-
-                            <div class="input-group form-floating mb-2">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                <input type="password" class="form-control" aria-label="uPassword" aria-describedby="basic-addon1" id="decode" name="uPassword">
-                                <label style="margin-left: 2.2rem;" for="floatingInput">User Password</label>
-                            </div>
-
-
-                            <div class="input-group form-floating mb-2">
-                                <span class="input-group-text"><i class="fas fa-exclamation"></i></span>
-                                <select class="form-select" id="uIsActive" name="uIsActive" aria-label="Floating label select example">
-                              <option value="true" selected>Active</option>
-                              <option value="false">InActive</option>
-                            </select>
-                                <label for="floatingSelect" style="margin-left: 2.2rem;">Status</label>
-                            </div>
-
-                            <div class="col-sm-11 text-center">
-                                <button class="btn btn-outline-primary float-left " id="savedept" type="submit" style="width: 45%">Save User</button>
-                                <a class="btn btn-outline-secondary float-right" type="reset" style="width: 45%">RESET</a>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

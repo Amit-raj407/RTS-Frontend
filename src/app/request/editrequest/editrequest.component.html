@@ -26,10 +26,10 @@
                     </div>
 
                     <div class="col-md-9">
-                        <select class="form-select" name="rqstDept" id="deptSelect" formControlName="reqdeptcode">
-                            <option value="" selected disabled>-Select-</option>
-                            <option value="MM0001">1</option>
-                        </select>
+                        <select class="form-select" name="rqstDept" id="deptSelect" formControlName="reqdeptcode" #mySelect (change)="buildUserDropDown(mySelect.value)">
+                        <option value="" selected disabled>-Select-</option>
+                        <option *ngFor='let dept of deptList' value={{dept}}>{{dept}}</option>
+                    </select>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -38,9 +38,9 @@
                     </div>
                     <div class="col-md-9">
                         <select class="form-select" formControlName="reqassignto" name="assignedTo" id="userSelect">
-                            <option value="" selected disabled>-Select-</option>
-                            <option value="43">1</option>
-                        </select>
+                        <option value="" selected disabled>-Select-</option>
+                        <option *ngFor="let user of userList" value={{user.uId}}>{{user.uFName}}</option>
+                    </select>
                     </div>
                 </div>
 

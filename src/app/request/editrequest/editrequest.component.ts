@@ -26,6 +26,9 @@ export class EditrequestComponent implements OnInit {
   statusEntity: statusEntity[] = [];
   status!: statusEntity;
 
+  deptList: any[] = [];
+  userList: any[] = [];
+
   // requestForm = this.fb.group({
   //   reqid: [''],
   //   reqtitle: ['', Validators.required],
@@ -87,6 +90,8 @@ export class EditrequestComponent implements OnInit {
       // trStatus: req
     });
 
+    this.buildUserDropDown(reqValues.reqdeptcode);
+
     let statusLength = reqValues.statusEntity.length;
     // this.requestForm.patchValue({
 
@@ -117,11 +122,11 @@ export class EditrequestComponent implements OnInit {
       severity:  this.requestForm.get('severity')?.value,
       piority:  this.requestForm.get('piority')?.value,
 
-      statusEntity: this.statusEntity 
+      statusEntity: this.statusEntity
     }
 
     console.log(JSON.stringify(this.request));
-    
+
 
     this.requestService.updateRequest(this.request).subscribe({
       next: responseData => {
@@ -132,6 +137,32 @@ export class EditrequestComponent implements OnInit {
 
       }
     })
+  }
+
+
+  buildUserDropDown(deptCode: string): void {
+    this.requestService.getAllUsersByDept(deptCode).subscribe({
+      next: responseData => {
+        console.log(responseData.obj[0]);
+        this.userList = responseData.obj[0];
+      },
+      error: err => {
+        console.log(err);
+
+      }
+    })
+  }
+
+  buildDeptDropDown(): void {
+    this.requestService.getAllDepartments().subscribe({
+      next: responseData => {
+        console.log(responseData.obj[0]);
+        this.deptList = responseData.obj[0];
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -147,7 +178,9 @@ export class EditrequestComponent implements OnInit {
         console.log(err);
 
       }
-    })
+    });
+
+    this.buildDeptDropDown();
     // Get Entire Request Object By Id and call
     // the updateValuesInForm() method passing the object having the values
 
