@@ -8,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
 
-  userName: string = 'User';
+
+
+  userRole: string | null = '';
+  userName: string | null = '';
+
+
   constructor() { }
 
+
+  onLogOut(): void {
+    localStorage.clear();
+  }
+
+
   ngOnInit(): void {
+    this.userRole = localStorage.getItem('userrole');
+    this.userName = localStorage.getItem('username');
   }
 
 }

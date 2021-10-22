@@ -4,25 +4,26 @@
         <div class="row text-center">
             <div class="col-lg-6 col-md-12 mb-3">
                 <div class="card border-0 chart_card">
-                    <h4>Requests Raised</h4>
-                    <h1 class="box">{{requestsRaised}}</h1>
+                    <h4>Requests Assigned To Department</h4>
+                    <h1 class="box">{{noOfAssignedRequestInDepartment}}</h1>
                     <!-- <canvas id="myChart_1" style="width:100%;max-width:600px"></canvas> -->
                 </div>
-                <div class="card border-0 mt-2 chart_card">
-                    <h4>Requests Assigned</h4>
-                    <h1 class="box">{{requestsAssigned}}</h1>
+                <div *ngIf="userRole != 'user'" class="card border-0 mt-2 chart_card">
+                    <h4>Number of Departments</h4>
+                    <h1 class="box">{{noOfDepartment}}</h1>
                     <!-- <canvas id="myChart_3" style="width:100%;max-width:600px"></canvas> -->
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
                 <div class="card border-0 chart_card">
-                    <h4>Requests Pending</h4>
-                    <h1 class="box">{{requestsPending}}</h1>
+                    <h4>Requests Raised By Department</h4>
+                    <h1 class="box">{{noOfRaisedRequestInDepartment}}</h1>
+
                     <!-- <canvas id="myChart_2" class="m-auto" style="width:100%;max-width:300px"></canvas> -->
                 </div>
-                <div class="card border-0 mt-2 chart_card">
-                    <h4>Requests Completed</h4>
-                    <h1 class="box">{{requestsCompleted}}</h1>
+                <div *ngIf="userRole != 'user'" class="card border-0 mt-2 chart_card">
+                    <h4>Number of Users in Department</h4>
+                    <h1 class="box">{{noOfUserInDepartment}}</h1>
                     <!-- <canvas id="myChart_4" class="m-auto" style="width:100%;max-width:300px"></canvas> -->
                 </div>
             </div>

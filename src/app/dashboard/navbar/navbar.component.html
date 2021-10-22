@@ -9,7 +9,7 @@
                 <li class="nav-item">
                     <a class="nav-link hover-underline-animation" [routerLink]="['../dashboard']" [routerLinkActive]="['active', 'class2']">Home</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li *ngIf="userRole != 'user'" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         User
                     </a>
@@ -18,7 +18,7 @@
                         <li><a class="dropdown-item" [routerLink]="['../dashboard/user/view']">View</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li *ngIf="userRole != 'user'" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Department
                     </a>
@@ -38,15 +38,15 @@
                 </li>
             </ul>
             <!-- <ul class="navbar-nav navbar-right mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <p>Hi,Bhuban Bhai</p> &nbsp;&nbsp;</li>
+                <li*ngIf= class="nav-item">
+                    <p>Hi,Bhuban Bhai</p> &nbsp;&nbsp;</li*ngIf="userRole != 'user'">
                 <li class="nav-item"></li>
             </ul> -->
             <span class="navbar-text">
                 <a class="nav-link hover-underline-animation">Hi, {{userName}}</a>
             </span>
             <span class="navbar-text">
-                <a class="nav-link hover-underline-animation" href="#">Logout</a>
+                <a class="nav-link hover-underline-animation" href="#" (click)="onLogOut()">Logout</a>
             </span>
             <!-- <form class="d-flex">
                 <h5>Hi,Bhuban Bhai</h5> &nbsp;&nbsp;

@@ -12,6 +12,8 @@ import { SettingsModule } from '../settings/settings.module';
 import { HomeComponent } from './home/home.component';
 
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -21,6 +23,7 @@ import { HomeComponent } from './home/home.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    HttpClientModule,
     UserModule,
     RequestModule,
     DepartmentModule,
