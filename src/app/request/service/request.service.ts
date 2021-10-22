@@ -25,7 +25,7 @@ export class RequestService {
   // }
 
   saveRequest(request: any): Observable<any> {
-    console.log('At ReqService'+request);
+    console.log('At ReqService' + request);
 
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export class RequestService {
       headers: httpHeaders,
     };
 
-    return this.http.post<any>(this.baseUrl+'generaterequest', request, httpOptions);
+    return this.http.post<any>(this.baseUrl + 'generaterequest', request, httpOptions);
   }
 
 
@@ -60,7 +60,7 @@ export class RequestService {
     const httpOptions = {
       headers: httpHeaders,
     };
-    return this.http.get<any>(this.baseUrl+'viewallrequest/allassignstatussususer',httpOptions);
+    return this.http.get<any>(this.baseUrl + 'viewallrequest/allassignstatussususer', httpOptions);
   }
 
 
@@ -78,7 +78,7 @@ export class RequestService {
       headers: httpHeaders,
     };
 
-    return this.http.get<any>(this.baseUrl+'viewallrequest/allraisestatususer',httpOptions);
+    return this.http.get<any>(this.baseUrl + 'viewallrequest/allraisestatususer', httpOptions);
   }
 
   getAllClosedRequests(): Observable<any> {
@@ -91,7 +91,7 @@ export class RequestService {
     const httpOptions = {
       headers: httpHeaders,
     };
-    return this.http.get<any>(this.baseUrl+'viewallrequest/allarriseclosedstatususer',httpOptions);
+    return this.http.get<any>(this.baseUrl + 'viewallrequest/allarriseclosedstatususer', httpOptions);
   }
 
   getAllRequestsForAdmin(): Observable<any> {
@@ -105,7 +105,7 @@ export class RequestService {
       headers: httpHeaders,
     };
 
-    return this.http.get<any>(this.baseUrl+'viewallrequest/allassignstatus',httpOptions);
+    return this.http.get<any>(this.baseUrl + 'viewallrequest/allassignstatus', httpOptions);
   }
 
 
@@ -120,7 +120,7 @@ export class RequestService {
       headers: httpHeaders,
     };
 
-    return this.http.get<any>(this.baseUrl+'viewallrequest/allarrisestatus',httpOptions);
+    return this.http.get<any>(this.baseUrl + 'viewallrequest/allarrisestatus', httpOptions);
   }
   getAllClosedRequestsAdmin(): Observable<any> {
     const httpHeaders = new HttpHeaders({
@@ -133,7 +133,7 @@ export class RequestService {
       headers: httpHeaders,
     };
 
-    return this.http.get<any>(this.baseUrl+'viewallrequest/allarriseclosedstatus',httpOptions);
+    return this.http.get<any>(this.baseUrl + 'viewallrequest/allarriseclosedstatus', httpOptions);
   }
 
 
@@ -154,7 +154,7 @@ export class RequestService {
 
 
   updateRequest(request: any): Observable<any> {
-    console.log('At ReqService'+JSON.stringify(request));
+    console.log('At ReqService' + JSON.stringify(request));
 
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -166,7 +166,37 @@ export class RequestService {
       headers: httpHeaders,
     };
 
-    return this.http.post<any>(this.baseUrl+'updaterequest', JSON.stringify(request), httpOptions);
+    return this.http.post<any>(this.baseUrl + 'updaterequest', JSON.stringify(request), httpOptions);
+  }
+
+
+  getAllDepartments(): Observable<any> {
+
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+    return this.http.get<any>(`${this.baseUrl}getalldepartmentcodelist`, httpOptions);
+  }
+
+
+  getAllUsersByDept(deptCode: string): Observable<any> {
+
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+    return this.http.get<any>(`${this.baseUrl}getuserbydeptcode/${deptCode}`, httpOptions);
   }
 
 

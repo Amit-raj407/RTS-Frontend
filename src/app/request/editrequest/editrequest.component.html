@@ -75,14 +75,15 @@
                         <label for="rqstNum">Request Number</label>
                     </div>
                     <div class="col-md-4">
-                        <input class="form-control" type="text" name="rqstNum" id="" value="Auto Generated" readonly>
+                        <input class="form-control" type="text" name="rqstNum" id="" formControlName="reqcode" value="Auto Generated" readonly>
                     </div>
                     <div class="col-md-2">
                         <label for="status">Status<span class="text-danger">*</span></label>
                     </div>
-                    <div formArrayName="statusEntity" class="col-md-3 text-center">
-                        <div class="">
-                            <select name="" class="form-select" formControlName="sestdesc" id="sestdesc">
+                    <div class="col-md-3 text-center">
+                        <div>
+                            <select name="" class="form-select" formControlName="trStatus" id="trStatus">
+                                <option value="" selected disabled>-Select-</option>
                                 <option value="NEW REQUEST">NEW REQUEST</option>
                                 <option value="Pending">Pending</option>
                                 <option value="In Progress">In Progress</option>

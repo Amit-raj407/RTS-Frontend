@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { RequestService } from '../service/request.service';
 
@@ -10,12 +10,27 @@ import { RequestService } from '../service/request.service';
 })
 export class EditrequestComponent implements OnInit {
 
-  constructor(private requestService: RequestService, private _activatedRouter: ActivatedRoute) { }
+  constructor(
+      private requestService: RequestService, 
+      private _activatedRouter: ActivatedRoute,
+      private fb: FormBuilder
+    ) { }
 
 
   reqcode: string | null = '';
 
-
+    // requestForm = this.fb.group({
+    //   reqid: [''],
+    //   reqtitle: ['', Validators.required],
+    //   reqcode: ['', Validators.required],
+    //   reqdesc: ['', Validators.required],
+    //   severity: ['', Validators.required],
+    //   piority: ['', Validators.required],
+    //   reqdeptcode: ['', Validators.required],
+    //   reqassignto: ['', Validators.required],
+    //   reqinicomment: ['', Validators.required],
+    //   trStatus: ['']
+    // })
 
   requestForm = new FormGroup({
     reqid: new FormControl(''),
@@ -41,11 +56,12 @@ export class EditrequestComponent implements OnInit {
     reqinicomment: new FormControl('', [
       Validators.required
     ]),
-    statusEntity: new FormArray([
-      new FormGroup({
-        sestdesc: new FormControl('')
-      })
-    ])
+    trStatus: new FormControl('', Validators.required),
+    // statusEntity: new FormArray([
+    //   new FormGroup({
+        
+    //   })
+    // ])
 
   });
 
@@ -61,10 +77,7 @@ export class EditrequestComponent implements OnInit {
       reqdeptcode: reqValues.reqdeptcode,
       reqassignto: reqValues.reqassignto,
       reqinicomment: reqValues.reqinicomment,
-      statusEntity: {
-        // sestdesc: reqValues.statusEntity[statusLength-1].sestdesc
-        sestdesc: 'Pending'
-      }
+      // trStatus: req
     });
 
     let statusLength = reqValues.statusEntity.length;

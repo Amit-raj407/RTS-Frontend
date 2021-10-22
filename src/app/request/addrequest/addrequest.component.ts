@@ -18,6 +18,8 @@ export class AddrequestComponent implements OnInit {
 
   request: Request = new Request;
 
+  deptList: string[] = [];
+
   requestForm = new FormGroup({
     reqtitle: new FormControl('', [
       Validators.required
@@ -70,6 +72,7 @@ export class AddrequestComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
 }
