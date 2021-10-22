@@ -72,7 +72,14 @@ export class AddrequestComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.requestService.getAllDepartments().subscribe({
+      next: responseData => {
+        console.log(responseData);
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
   }
 
 }
