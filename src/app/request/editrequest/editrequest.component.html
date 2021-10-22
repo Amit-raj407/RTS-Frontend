@@ -119,26 +119,19 @@
             <table class="table">
                 <thead>
                     <tr class="text-uppercase table-active">
-                        <th scope="col">Request Number</th>
+                        <th scope="col">Created Date</th>
                         <th scope="col">Request Title</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Assigned to</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Comments</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr *ngFor='let request of requests'>
-                        <td><a>{{request.reqcode}}</a></td>
-                        <td>{{request.reqtitle}}</td>
-                        <td>{{request.status_desc}}</td>
-                        <td>{{request.reqassignto}}</td>
-                        <td>{{request.createdBy}}</td>
-                        <td>{{request.severity1}}</td>
-                        <td>{{request.piority1}}</td>
-                        <td>{{request.date}}</td>
-                        <td>{{request.age}}</td>
-
-
-                    </tr> -->
+                    <tr *ngFor='let history of commentHistoryList'>
+                        <td><a>{{history.createddate | date :'short'}} </a></td>
+                        <td>{{history.requesttitle}}</td>
+                        <td>{{history.userfirstname}}</td>
+                        <td>{{history.commentsdesc}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

@@ -29,6 +29,8 @@ export class EditrequestComponent implements OnInit {
   deptList: any[] = [];
   userList: any[] = [];
 
+  commentHistoryList: any[] = [];
+
   // requestForm = this.fb.group({
   //   reqid: [''],
   //   reqtitle: ['', Validators.required],
@@ -77,6 +79,7 @@ export class EditrequestComponent implements OnInit {
 
   updateValuesInForm(reqValues: any): void {
     let statusEntityLength = reqValues.statusEntity.length;
+    let commentHistoryLength = reqValues.cCommentsEntity.length;
 
     // console.log(reqValues.statusEntity[]);
 
@@ -90,7 +93,7 @@ export class EditrequestComponent implements OnInit {
       piority: reqValues.piority,
       reqdeptcode: reqValues.reqdeptcode,
       reqassignto: reqValues.reqassignto,
-      reqinicomment: reqValues.reqinicomment,
+      reqinicomment: reqValues.cCommentsEntity[commentHistoryLength-1].cmdesc,
       trStatus: reqValues.statusEntity[statusEntityLength-1].sestdesc
     });
 
@@ -135,6 +138,7 @@ export class EditrequestComponent implements OnInit {
     this.requestService.updateRequest(this.request).subscribe({
       next: responseData => {
         console.log(responseData);
+        this.buildCommentHistory();
       },
       error: err => {
         console.log(err);
@@ -172,7 +176,8 @@ export class EditrequestComponent implements OnInit {
   buildCommentHistory(): void {
     this.requestService.getRequestCommentHistory(this.reqcode).subscribe({
       next: responseData => {
-        console.log(responseData);
+        console.log(responseData.obj);
+        this.commentHistoryList = responseData.obj;
       },
       error: err => {
         console.log(err);

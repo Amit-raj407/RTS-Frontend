@@ -212,7 +212,7 @@ export class RequestService {
       headers: httpHeaders,
     };
 
-    return this.http.get<any>(`${this.baseUrl}getrequestallhistory/${reqcode}`)
+    return this.http.get<any>(`${this.baseUrl}getrequestallhistory/${reqcode}`, httpOptions)
   }
 
 
