@@ -27,28 +27,49 @@ export class ViewrequestComponent implements OnInit {
   assignedRequests(): void {
     this.loadedPage = 1;
     this.requests = [];
-    this.sub = this.requestService.getAllRequestsForUser().subscribe({
-      next: responseData => {
-        this.requests = responseData.obj[0]
-        console.log(this.requests);
-      },
-      error: err => {
-        console.log(err);
+    Swal.fire({
+      title: 'Please Wait',
+      allowEscapeKey: false,
+      allowOutsideClick: true,
+      background: '#fff',
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+        this.sub = this.requestService.getAllRequestsForUser().subscribe({
+          next: responseData => {
+            this.requests = responseData.obj[0]
+            console.log(this.requests);
+          },
+          error: err => {
+            console.log(err);
+          }
+        })
       }
     })
+
   }
 
 
   raisedRequests(): void {
     this.loadedPage = 2;
     this.requests = [];
-    this.sub = this.requestService.getAllRequestsAssignedByUser().subscribe({
-      next: responseData => {
-        this.requests = responseData.obj[0]
-        console.log(this.requests);
-      },
-      error: err => {
-        console.log(err);
+    Swal.fire({
+      title: 'Please Wait',
+      allowEscapeKey: false,
+      allowOutsideClick: true,
+      background: '#fff',
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+        this.sub = this.requestService.getAllRequestsAssignedByUser().subscribe({
+          next: responseData => {
+            this.requests = responseData.obj[0]
+            console.log(this.requests);
+          },
+          error: err => {
+            console.log(err);
+          }
+        })
       }
     })
   }
@@ -57,13 +78,23 @@ export class ViewrequestComponent implements OnInit {
   closedRequests(): void {
     this.loadedPage = 3;
     this.requests = [];
-    this.sub = this.requestService.getAllClosedRequests().subscribe({
-      next: responseData => {
-        this.requests = responseData.obj[0]
-        console.log(this.requests);
-      },
-      error: err => {
-        console.log(err);
+    Swal.fire({
+      title: 'Please Wait',
+      allowEscapeKey: false,
+      allowOutsideClick: true,
+      background: '#fff',
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+        this.sub = this.requestService.getAllClosedRequests().subscribe({
+          next: responseData => {
+            this.requests = responseData.obj[0]
+            console.log(this.requests);
+          },
+          error: err => {
+            console.log(err);
+          }
+        })
       }
     })
   }
@@ -96,33 +127,53 @@ export class ViewrequestComponent implements OnInit {
         })
       }
     })
-    
+
   }
 
 
   raisedRequestsAdminView(): void {
     this.loadedPage = 5;;
     this.requests = [];
-    this.sub = this.requestService.getAllRequestsAssignedByAdmin().subscribe({
-      next: responseData => {
-        this.requests = responseData.obj[0]
-        console.log(this.requests);
-      },
-      error: err => {
-        console.log(err);
+    Swal.fire({
+      title: 'Please Wait',
+      allowEscapeKey: false,
+      allowOutsideClick: true,
+      background: '#fff',
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+        this.sub = this.requestService.getAllRequestsAssignedByAdmin().subscribe({
+          next: responseData => {
+            this.requests = responseData.obj[0]
+            console.log(this.requests);
+          },
+          error: err => {
+            console.log(err);
+          }
+        })
       }
     })
   }
   closedRequestsAdminView(): void {
     this.loadedPage = 6;
     this.requests = [];
-    this.sub = this.requestService.getAllClosedRequestsAdmin().subscribe({
-      next: responseData => {
-        this.requests = responseData.obj[0]
-        console.log(this.requests);
-      },
-      error: err => {
-        console.log(err);
+    Swal.fire({
+      title: 'Please Wait',
+      allowEscapeKey: false,
+      allowOutsideClick: true,
+      background: '#fff',
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+        this.sub = this.requestService.getAllClosedRequestsAdmin().subscribe({
+          next: responseData => {
+            this.requests = responseData.obj[0]
+            console.log(this.requests);
+          },
+          error: err => {
+            console.log(err);
+          }
+        })
       }
     })
   }
