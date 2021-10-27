@@ -79,10 +79,9 @@ export class AddrequestComponent implements OnInit {
 
             if (responseData) {
               Swal.fire({
-                title: 'Request Added',
+                title: 'Request Number:'+responseData.obj[0].reqcode,
                 icon: 'success',
-                showConfirmButton: false,
-                timer: 1500,
+                showConfirmButton: true,
               }).then(() => {
                 this.router.navigate(['../dashboard/request']);
               })
@@ -91,7 +90,7 @@ export class AddrequestComponent implements OnInit {
           error: err => {
             console.log(err);
             Swal.fire({
-              text: 'Error in Adding Request',
+              text: err.error.message,
               icon: 'warning'
             })
           }

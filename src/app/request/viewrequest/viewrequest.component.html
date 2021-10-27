@@ -16,36 +16,39 @@
 
 
     </div>
-    <table class="table mt-2">
-        <thead>
-            <tr class="text-uppercase table-active">
-                <th scope="col">Request Number</th>
-                <th scope="col">Request Title</th>
-                <th scope="col">Status</th>
-                <th scope="col">Assigned to</th>
-                <th scope="col">Assigned by</th>
-                <th scope="col">Severity</th>
-                <th scope="col">Priority</th>
-                <th scope="col">Last_Updated_Date</th>
-                <th scope="col">Request Age</th>
+    <div class="table-responsive">
+        <table class="table mt-2">
+            <thead>
+                <tr class="text-uppercase table-active">
+                    <th scope="col">Request Number</th>
+                    <th scope="col">Request Title</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Assigned to</th>
+                    <th scope="col">Assigned by</th>
+                    <th scope="col">Severity</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Last_Updated_Date</th>
+                    <th scope="col">Request Age</th>
 
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor='let request of requests'>
-                <td><a [routerLink]="['../edit', request.reqcode ]">{{request.reqcode}}</a></td>
-                <td>{{request.reqtitle}}</td>
-                <td>{{request.status_desc}}</td>
-                <td>{{request.reqassignto}}</td>
-                <td>{{request.createdBy}}</td>
-                <td>{{request.severity1}}</td>
-                <td>{{request.piority1}}</td>
-                <td>{{request.date | date :'short'}}</td>
-                <td>{{request.age}}</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let request of requests'>
+                    <td><a [routerLink]="['../edit', request.reqcode ]">{{request.reqcode}}</a></td>
+                    <td>{{request.reqtitle}}</td>
+                    <td>{{request.status_desc}}</td>
+                    <td>{{request.reqassignto}}</td>
+                    <td>{{request.createdBy}}</td>
+                    <td>{{request.severity1}}</td>
+                    <td>{{request.piority1}}</td>
+                    <td>{{request.date | date :'short'}}</td>
+                    <td>{{request.age}}</td>
 
 
-            </tr>
-        </tbody>
-    </table>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
