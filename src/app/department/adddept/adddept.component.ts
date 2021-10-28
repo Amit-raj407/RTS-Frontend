@@ -18,6 +18,7 @@ export class AdddeptComponent implements OnInit {
   constructor(private router: Router, private service: DepartmentService) {}
 
   ngOnInit(): void {
+    this.role = localStorage.getItem('role');
     this.service.getAllDepartments().subscribe({
       next: (responseData) => {
         console.log(responseData.obj[0]);
@@ -32,6 +33,8 @@ export class AdddeptComponent implements OnInit {
   step: number = 1;
 
   deptCodeList: any[] = [];
+
+  role: string | null = '';
 
   parentDeptForm = new FormGroup({
     depcode: new FormControl('', Validators.required),
