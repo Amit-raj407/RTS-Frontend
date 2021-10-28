@@ -27,6 +27,9 @@ export class AdddeptComponent implements OnInit {
 
   submitParentForm() {
     this.step = 2;
+    this.createDepartmentData.patchValue({
+      depcode: this.parentDeptForm.get('depcode')?.value
+    })
   }
 
   backToParent(): void {
@@ -42,7 +45,7 @@ export class AdddeptComponent implements OnInit {
   createDepartmentData = new FormGroup({
     decode: new FormControl('', Validators.compose([Validators.required])),
     dename: new FormControl('', Validators.compose([Validators.required])),
-    depcode: new FormControl('', Validators.compose([Validators.required])),
+    depcode: new FormControl({value: '', disabled: true}, Validators.compose([Validators.required])),
     deisactive: new FormControl('', Validators.compose([Validators.required])),
   });
 
