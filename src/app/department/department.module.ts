@@ -6,13 +6,15 @@ import { AdddeptComponent } from './adddept/adddept.component';
 import { EditdeptComponent } from './editdept/editdept.component';
 import { ViewdeptComponent } from './viewdept/viewdept.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ParentdeptComponent } from './parentdept/parentdept.component';
 
 
 @NgModule({
   declarations: [
     AdddeptComponent,
     EditdeptComponent,
-    ViewdeptComponent
+    ViewdeptComponent,
+    ParentdeptComponent
   ],
   imports: [
     CommonModule,

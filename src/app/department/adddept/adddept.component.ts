@@ -17,6 +17,26 @@ export class AdddeptComponent implements OnInit {
   constructor(private router: Router, private service: DepartmentService) {}
   ngOnInit(): void {}
 
+  step: number = 1;
+
+  parentDeptForm = new FormGroup({
+    depcode: new FormControl('',
+      Validators.required
+    )
+  });
+
+  submitParentForm() {
+    this.step = 2;
+  }
+
+  backToParent(): void {
+    this.step = 1;
+  }
+
+
+  buildParentDeptDropDown(): void {
+    
+  }
 
 
   createDepartmentData = new FormGroup({
