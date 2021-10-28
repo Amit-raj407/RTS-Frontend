@@ -18,7 +18,7 @@ export class AdddeptComponent implements OnInit {
   constructor(private router: Router, private service: DepartmentService) {}
 
   ngOnInit(): void {
-    this.role = localStorage.getItem('role');
+    this.role = localStorage.getItem('userrole');
     this.service.getAllDepartments().subscribe({
       next: (responseData) => {
         console.log(responseData.obj[0]);
@@ -36,6 +36,8 @@ export class AdddeptComponent implements OnInit {
 
   role: string | null = '';
 
+  flag: boolean = false;
+
   parentDeptForm = new FormGroup({
     depcode: new FormControl('', Validators.required),
   });
@@ -45,10 +47,46 @@ export class AdddeptComponent implements OnInit {
     this.createDepartmentData.patchValue({
       depcode: this.parentDeptForm.get('depcode')?.value,
     });
+
+    // -------------------
+    // this.createDepartmentData.patchValue({
+    //   depcode: this.parentDeptForm.get('depcode')?.value,
+    // });
+    // -------------------
+    // this.createDepartmentData.patchValue({
+    //   decode: this.parentDeptForm.get('depcode')?.value,
+    //   depcode: this.parentDeptForm.get('depcode')?.value,
+    // });
+    // this.createDepartmentData.get('decode')?.disabled;
+    // -----------------------------------------------------
+
+    this.deptCodeList.forEach((dept) => {
+      if (dept.decode == this.parentDeptForm.get('depcode')?.value) {
+        console.log('Match');
+        console.log(dept.decode);
+        console.log(this.parentDeptForm.get('depcode')?.value);
+
+        this.flag = true;
+      }
+    });
+
+    if (this.flag) {
+      this.createDepartmentData.patchValue({
+        decode: '',
+        depcode: this.parentDeptForm.get('depcode')?.value,
+      });
+    } else {
+      console.log("else");
+      this.createDepartmentData.patchValue({
+        decode: this.parentDeptForm.get('depcode')?.value,
+        depcode: this.parentDeptForm.get('depcode')?.value,
+      });
+    }
   }
 
   backToParent(): void {
     this.step = 1;
+    this.flag = false;
   }
 
   buildParentDeptDropDown(): void {}
@@ -57,7 +95,7 @@ export class AdddeptComponent implements OnInit {
     decode: new FormControl('', Validators.compose([Validators.required])),
     dename: new FormControl('', Validators.compose([Validators.required])),
     depcode: new FormControl(
-      { value: ''},
+      { value: '' },
       Validators.compose([Validators.required])
     ),
     deisactive: new FormControl('', Validators.compose([Validators.required])),

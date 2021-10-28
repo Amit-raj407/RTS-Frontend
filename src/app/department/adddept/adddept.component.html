@@ -11,13 +11,12 @@
                         <div *ngIf="role == 'admin'" class="input-group form-floating mb-2">
                             <span class="input-group-text"><i class="fas fa-building"></i></span>
                             <select class="form-select" aria-label="Default select example" name="depcode" formControlName="depcode">
-                                <option value="HR0001">HR0001</option>
                                 <option value="" selected disabled>-Select-</option>
                                 <option *ngFor="let dept of deptCodeList" value={{dept.decode}}>{{dept.dename}}</option>
                             </select>
                             <label style="margin-left: 2.2rem;" for="floatingInput">Select Department</label>
                         </div>
-                        
+
                         <!-- <div *ngIf="role == 'supadmin'" class="input-group form-floating mb-2">
                             <span class="input-group-text"><i class="fas fa-building"></i></span>
                             <select class="form-select" aria-label="Default select example" name="depcode" formControlName="depcode">
@@ -26,13 +25,11 @@
                             </select>
                             <label style="margin-left: 2.2rem;" for="floatingInput">Select Department</label>
                         </div> -->
-                        
-                        
-                        <div  *ngIf="role == 'supadmin'" class="input-group form-floating mb-2">
-                            <span class="input-group-text"><i class="fas fa-building"></i></span> 
-                            <input type="text" class="form-control" aria-label="depcode"
-                                aria-describedby="basic-addon1" list="browsers" name="depcode"
-                                id="depcode" autocomplete="off">
+
+
+                        <div *ngIf="role == 'supadmin'" class="input-group form-floating mb-2">
+                            <span class="input-group-text"><i class="fas fa-building"></i></span>
+                            <input type="text" class="form-control" formControlName="depcode" aria-label="depcode" aria-describedby="basic-addon1" list="browsers" name="depcode" id="depcode" autocomplete="off">
                             <label style="margin-left: 2.8rem;" for="floatingInput">Parent
                                 Department Code</label>
 
@@ -68,7 +65,7 @@
                     <form [formGroup]="createDepartmentData" (ngSubmit)="onDepartmentSubmit()">
                         <div class="input-group form-floating mb-2">
                             <span class="input-group-text"><i class="fas fa-building"></i></span>
-                            <input type="text" class="form-control" aria-label="decode" aria-describedby="basic-addon1" formControlName="decode" name="decode" required="required">
+                            <input type="text" class="form-control" aria-label="decode" aria-describedby="basic-addon1" formControlName="decode" id="decode" name="decode" required="required" [readOnly]="!flag">
                             <label style="margin-left: 2.2rem;" for="floatingInput">Department Code</label>
                         </div>
 
