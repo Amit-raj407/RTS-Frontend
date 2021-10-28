@@ -1,4 +1,3 @@
-
 <div *ngIf="step == 1" class="container mt-3">
     <div class="row  d-flex justify-content-center">
         <div class="col-12  d-flex justify-content-center">
@@ -11,18 +10,17 @@
                     <form [formGroup]="parentDeptForm" (ngSubmit)="submitParentForm()">
                         <div class="input-group form-floating mb-2">
                             <span class="input-group-text"><i class="fas fa-building"></i></span>
-                            <select class="form-select" aria-label="Default select example" name="depcode"
-                                formControlName="depcode">
-                                <option value="HR0001">HR0001</option>
+                            <select class="form-select" aria-label="Default select example" name="depcode" formControlName="depcode">
+                                <!-- <option value="HR0001">HR0001</option> -->
+                                <option value="" selected disabled>-Select-</option>
+                                <option *ngFor="let dept of deptCodeList" value={{dept.decode}}>{{dept.dename}}</option>
                             </select>
                             <label style="margin-left: 2.2rem;" for="floatingInput">Select Department</label>
                         </div>
 
                         <div class="col-sm-12 text-center">
-                            <button class="btn btn-outline-primary float-left " id="savedept" type="submit"
-                                style="width: 50%" [disabled]="!parentDeptForm.valid">Proceed</button>
-                            <button class="btn btn-outline-secondary float-right" type="reset"
-                                style="width: 50%">RESET</button>
+                            <button class="btn btn-outline-primary float-left " id="savedept" type="submit" style="width: 50%" [disabled]="!parentDeptForm.valid">Proceed</button>
+                            <button class="btn btn-outline-secondary float-right" type="reset" style="width: 50%">RESET</button>
                         </div>
                     </form>
                 </div>
@@ -56,11 +54,11 @@
 
                         <div class="input-group form-floating mb-2">
                             <span class="input-group-text"><i class="fas fa-building"></i></span>
-                            <input type="text" class="form-control" aria-label="depcode" aria-describedby="basic-addon1" formControlName="depcode" name="depcode" required="required">
+                            <input type="text" class="form-control" aria-label="depcode" aria-describedby="basic-addon1" formControlName="depcode" name="depcode" required="required" readonly>
                             <!-- <select class="form-select" aria-label="Default select example" name="depcode" formControlName="depcode">
                                     <option value="HR0001">HR0001</option>
                             </select> -->
-                            <label style="margin-left: 2.2rem;" for="floatingInput">Select Department</label>
+                            <label style="margin-left: 2.2rem;" for="floatingInput">Selected Department</label>
                         </div>
 
                         <div class="input-group form-floating mb-2">
