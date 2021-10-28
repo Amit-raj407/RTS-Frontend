@@ -22,6 +22,8 @@ export class EdituserComponent implements OnInit {
 
   username: string | null = '';
 
+  step: number = 1;
+
   userForm = new FormGroup({
     uName: new FormControl('', Validators.compose([Validators.required])),
     uFName: new FormControl('', Validators.compose([Validators.required])),
@@ -59,7 +61,6 @@ export class EdituserComponent implements OnInit {
 
   userUpdateSubmit() {
     console.warn(this.userForm.value);
-
     this.service.updateUser(this.userForm.value).subscribe(
       (response: any) => {
         console.log(response);
@@ -69,5 +70,14 @@ export class EdituserComponent implements OnInit {
         console.log(error);
       }
     );
+   
+  }
+
+  goToManageAccess() {
+    this.step = 2;
+  }
+
+  backToEdit() {
+    this.step = 1;
   }
 }

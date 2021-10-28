@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content mt-3" *ngIf="step == 1">
     <div class="container">
         <div class="row ">
             <div class="col-12 d-flex justify-content-center">
@@ -6,6 +6,7 @@
                     <div class="card-header">
                         <h1 class="card-title d-flex justify-content-center">Edit User
                         </h1>
+                        <a (click)="goToManageAccess()" class="d-flex justify-content-center" id="link">Manage User Access</a>
                     </div>
                     <div class="card-body justify-content-center">
                         <form [formGroup]="userForm" (ngSubmit)="userUpdateSubmit()">
@@ -43,7 +44,7 @@
                                   </select> <label for="floatingSelect" style="margin-left: 2.2rem;">Status</label>
                                 </div>
 
-                                <div class="col-sm-11 text-center">
+                                <div class="col-sm-12 text-center">
                                     <button class="btn btn-outline-primary float-left " type="submit" style="width: 45%">Save User</button>
                                     <button class="btn btn-outline-secondary float-right" type="reset" style="width: 45%">RESET</button>
                                 </div>
@@ -56,3 +57,67 @@
         </div>
     </div>
 </div>
+
+
+
+<section *ngIf="step == 2" class="container">
+    <div class="card m-3 mx-auto" id="shadow">
+
+
+        <div class="card-body" id="bd01">
+            <div class="table-responsive-md container">
+
+                <h1 class="text-center bg-light mb-3">Manage User Access</h1>
+
+                <table class="table table-footer-cell" id="myTable">
+                    <thead>
+                        <tr class="text-uppercase">
+                            <th style="display: none;" scope="col">User ID</th>
+                            <th style="display: none;" scope="col">Department Code</th>
+                            <th scope="col">Department Name</th>
+                            <th style="display: none;" scope="col">CreatedDate</th>
+                            <th style="display: none;" scope="col">createdBy</th>
+                            <th scope="col">User_Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="dcl : ${listDepts}">
+
+                            <td style="display: none;" th:text="${id}" th:value="${id}"></td>
+
+
+
+                            <td style="display: none;" scope="row" th:text="${dcl.deptId}" th:value="${dcl.deptId}">
+                            </td>
+
+                            <td scope="row" th:text="${dcl.departmentName}" th:value="${dcl.departmentName}"></td>
+
+                            <td style="display: none;" th:text="${session.curdate}" th:value="${session.curdate}">
+                            </td>
+                            <td style="display: none;" th:text="${session.userId}" th:value="${session.userId}"></td>
+
+                            <td scope="row"><select class="form-select" aria-label="Default select example"
+                                    name="role" id="role">
+                                    <option selected="selected" value="nouser">nouser</option>
+                                    <option value="user">user</option>
+                                    <option value="admin">admin</option>
+                                </select></td>
+                        </tr>
+                       
+                    </tbody>
+
+                </table>
+
+                <div class="col-sm-12 text-center">
+                    <a class="btn btn-outline-primary float-left " id="myButton" type="submit" th:href="@{/ViewUsers}"
+                        style="width: 50%">Save Department Access</a>
+                    <button class="btn btn-outline-secondary float-right" type="reset" style="width: 50%" (click)="backToEdit()"
+                        >Back</button>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+
+</section>
