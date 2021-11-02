@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'view', pathMatch: 'full' },
   { path: 'view', component: ViewdeptComponent },
   { path: 'add', component: AdddeptComponent },
-  { path: 'edit', component: EditdeptComponent },
+  { path: 'edit/:decode', component: EditdeptComponent },
   { path: 'parent', component: ParentdeptComponent }
 ];
 

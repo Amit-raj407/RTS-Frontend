@@ -36,6 +36,15 @@
                         <li><a class="dropdown-item" [routerLink]="['../dashboard/request/view']">View</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Settings
+                  </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" [routerLink]="['../dashboard/settings/changepassword']">Change Password</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['../dashboard/settings/resetpassword']">Reset Password</a></li>
+                    </ul>
+                </li>
             </ul>
             <!-- <ul class="navbar-nav navbar-right mb-2 mb-lg-0">
                 <li*ngIf= class="nav-item">

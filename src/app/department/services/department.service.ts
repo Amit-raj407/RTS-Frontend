@@ -38,18 +38,23 @@ export class DepartmentService {
     return this.http.get<any>(`${this.baseUrl}selectdepartment`,httpOptions);
   }
 
-  // getDeptForAdmin(): Observable<any> {
-  //   const httpHeaders = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     authorization: 'Bearer ' + localStorage.getItem('token'),
-  //     userid: '' + localStorage.getItem('userid'),
-  //     userrole: '' + localStorage.getItem('userrole'),
-  //   });
-  //   const httpOptions = {
-  //     headers: httpHeaders,
-  //   };
-  //   return this.http.get<any>(`${this.baseUrl}getdeptforadmin`,httpOptions);
-  // }
+  decode: string | null = '';
+
+  getDeptByDeptCode(decode:any)
+  {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+      userid: '' + localStorage.getItem('userid'),
+      userrole: '' + localStorage.getItem('userrole'),
+    });
+    const httpOptions = {
+      headers: httpHeaders,
+    };
+    console.log(decode);
+
+    return this.http.get<any>(`${this.baseUrl}getdeptbydeptcode/${decode}`,httpOptions);
+  }
 
 
 }

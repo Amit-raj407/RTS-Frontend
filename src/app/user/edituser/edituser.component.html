@@ -84,37 +84,30 @@
                         <tr th:each="dcl : ${listDepts}">
 
                             <td style="display: none;" th:text="${id}" th:value="${id}"></td>
-
-
-
                             <td style="display: none;" scope="row" th:text="${dcl.deptId}" th:value="${dcl.deptId}">
                             </td>
-
                             <td scope="row" th:text="${dcl.departmentName}" th:value="${dcl.departmentName}"></td>
 
                             <td style="display: none;" th:text="${session.curdate}" th:value="${session.curdate}">
                             </td>
                             <td style="display: none;" th:text="${session.userId}" th:value="${session.userId}"></td>
 
-                            <td scope="row"><select class="form-select" aria-label="Default select example"
-                                    name="role" id="role">
-                                    <option selected="selected" value="nouser">nouser</option>
+                            <td scope="row"><select class="form-select" aria-label="Default select example" name="role" id="role">
+                                    <option selected="selected" value="no permission">no permission</option>
                                     <option value="user">user</option>
                                     <option value="admin">admin</option>
                                 </select></td>
                         </tr>
-                       
+
                     </tbody>
 
                 </table>
 
                 <div class="col-sm-12 text-center">
-                    <a class="btn btn-outline-primary float-left " id="myButton" type="submit" th:href="@{/ViewUsers}"
-                        style="width: 50%">Save Department Access</a>
-                    <button class="btn btn-outline-secondary float-right" type="reset" style="width: 50%" (click)="backToEdit()"
-                        >Back</button>
+                    <a class="btn btn-outline-primary float-left " id="myButton" type="submit" th:href="@{/ViewUsers}" style="width: 50%">Save Department Access</a>
+                    <button class="btn btn-outline-secondary float-right" type="reset" style="width: 50%" (click)="backToEdit()">Back</button>
                 </div>
-                
+
 
             </div>
         </div>

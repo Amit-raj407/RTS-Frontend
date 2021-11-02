@@ -2,7 +2,7 @@
     <div class="card mr-3 ml-3" id="shadow" style="width: 100%;">
         <div class="card-body" id="bd01">
             <div class="table-responsive-md">
-                <table id="viewdept" class="display" style="width: 100%;">
+                <table id="viewdept" class="table display" style="width: 100%;">
                     <thead>
                         <tr class="text-uppercase">
                             <th scope="col" style="display:none">Dept_id</th>
@@ -18,6 +18,11 @@
                         <tr *ngFor='let dept of deptList'>
                             <td scope="row" style="display:none">{{dept.deid}}</td>
                             <td scope="row">{{dept.decode}}</td>
+
+                            <td scope="row">
+                                <a [routerLink]="['../edit',dept.decode ]">{{dept.decode}}</a>
+                            </td>
+
                             <td scope="row">{{dept.dename}}</td>
                             <td scope="row">{{dept.depcode}}</td>
                             <td scope="row">{{dept.decdate}}</td>
