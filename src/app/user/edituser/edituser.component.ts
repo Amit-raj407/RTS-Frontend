@@ -7,6 +7,7 @@ import {
   FormsModule,
   Validators,
 } from '@angular/forms';
+import { DepartmentService } from 'src/app/department/services/department.service';
 
 @Component({
   selector: 'app-edituser',
@@ -17,10 +18,13 @@ export class EdituserComponent implements OnInit {
   constructor(
     private _activatedRouter: ActivatedRoute,
     private router: Router,
-    private service: UserService
+    private service: UserService,
+    private deptService: DepartmentService
   ) {}
 
   username: string | null = '';
+
+  departmentList: any[] = [];
 
   step: number = 1;
 
@@ -42,6 +46,18 @@ export class EdituserComponent implements OnInit {
       uPassword: reqValues.uPassword,
       uIsActive: reqValues.uIsActive,
     });
+  }
+
+  buildDepartmentList(): void {
+    this.deptService.getAllDepartments().subscribe({
+      next: responseData => {
+        console.log(responseData);
+      },
+      error: err => {
+        console.log(err);
+        
+      }
+    })
   }
 
   ngOnInit(): void {
