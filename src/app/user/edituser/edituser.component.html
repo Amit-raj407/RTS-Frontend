@@ -68,11 +68,13 @@
             <div class="table-responsive-md container">
 
                 <h1 class="text-center bg-light mb-3">Manage User Access</h1>
+                <h4 class="text-center bg-light mb-3">UserName: {{username}}</h4>
 
                 <table class="table table-footer-cell" id="myTable">
                     <thead>
                         <tr class="text-uppercase">
                             <th style="display: none;" scope="col">User ID</th>
+                            <th style="display: none;" scope="col">User Name</th>
                             <th style="display: none;" scope="col">Department Code</th>
                             <th scope="col">Department Name</th>
                             <th style="display: none;" scope="col">CreatedDate</th>
@@ -81,22 +83,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="dcl : ${listDepts}">
-
-                            <td style="display: none;" th:text="${id}" th:value="${id}"></td>
-                            <td style="display: none;" scope="row" th:text="${dcl.deptId}" th:value="${dcl.deptId}">
+                        <tr *ngFor="let dept of departmentList; let i = index;">
+                            <td style="display: none;"></td>
+                            <td style="display: none;" scope="row">
                             </td>
-                            <td scope="row" th:text="${dcl.departmentName}" th:value="${dcl.departmentName}"></td>
+                            <td scope="row">{{dept.dename}}</td>
 
-                            <td style="display: none;" th:text="${session.curdate}" th:value="${session.curdate}">
+                            <td style="display: none;">
                             </td>
-                            <td style="display: none;" th:text="${session.userId}" th:value="${session.userId}"></td>
+                            <td style="display: none;"></td>
 
-                            <td scope="row"><select class="form-select" aria-label="Default select example" name="role" id="role">
+                            <td scope="row"><select class="form-select" aria-label="Default select example" name="role" id="role" #permission (change)="pushDataToPermissionArray(permission.value, i)">
                                     <option selected="selected" value="no permission">no permission</option>
                                     <option value="user">user</option>
                                     <option value="admin">admin</option>
-                                </select></td>
+                                </select>
+                            </td>
+                            <!-- <td><button class="btn btn-success" (click)="pushDataToPermissionArray()">Save</button></td> -->
                         </tr>
 
                     </tbody>
@@ -104,7 +107,7 @@
                 </table>
 
                 <div class="col-sm-12 text-center">
-                    <a class="btn btn-outline-primary float-left " id="myButton" type="submit" th:href="@{/ViewUsers}" style="width: 50%">Save Department Access</a>
+                    <a class="btn btn-outline-primary float-left " (click)="saveDepartmentAccess()" id="myButton" type="submit" style="width: 50%">Save Department Access</a>
                     <button class="btn btn-outline-secondary float-right" type="reset" style="width: 50%" (click)="backToEdit()">Back</button>
                 </div>
 

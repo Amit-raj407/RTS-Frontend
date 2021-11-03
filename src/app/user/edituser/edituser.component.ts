@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { DepartmentService } from 'src/app/department/services/department.service';
+import { PermissionData } from '../model/PermissionData';
 
 @Component({
   selector: 'app-edituser',
@@ -23,8 +24,13 @@ export class EdituserComponent implements OnInit {
   ) {}
 
   username: string | null = '';
+  userId!: number;
 
   departmentList: any[] = [];
+
+  permissionDataArray: PermissionData[] = [];
+
+  permissionData!: PermissionData;
 
   step: number = 1;
 
@@ -51,13 +57,28 @@ export class EdituserComponent implements OnInit {
   buildDepartmentList(): void {
     this.deptService.getAllDepartments().subscribe({
       next: responseData => {
-        console.log(responseData);
+        console.log(responseData.obj[0]);
+        this.departmentList = responseData.obj[0];
+        this.buildPermissionArray();
       },
       error: err => {
         console.log(err);
-        
+
       }
     })
+  }
+
+  buildPermissionArray(): void {
+    this.departmentList.forEach(row => {
+      this.permissionData = {
+        deptid : row.deid,
+        userid : this.userId,
+        role: 'no permission'
+      }
+      this.permissionDataArray.push(this.permissionData);
+    })
+    console.log(this.permissionDataArray);
+
   }
 
   ngOnInit(): void {
@@ -67,12 +88,15 @@ export class EdituserComponent implements OnInit {
     this.service.getUserByUsername(this.username).subscribe({
       next: (responseData) => {
         console.log(responseData.obj[0]);
+        this.userId = responseData.obj[0].uId;
         this.updateValuesInForm(responseData.obj[0]);
       },
       error: (err) => {
         console.log(err);
       },
     });
+    this.buildDepartmentList();
+
   }
 
   userUpdateSubmit() {
@@ -86,7 +110,7 @@ export class EdituserComponent implements OnInit {
         console.log(error);
       }
     );
-   
+
   }
 
   goToManageAccess() {
@@ -96,4 +120,57 @@ export class EdituserComponent implements OnInit {
   backToEdit() {
     this.step = 1;
   }
+
+  pushDataToPermissionArray(permission: string, i: number) {
+    console.log(permission, i);
+    console.log(this.departmentList);
+    console.log(this.departmentList[i].deid);
+
+    this.permissionData = {
+      deptid : this.departmentList[i].deid,
+      userid : this.userId,
+      role: permission
+    }
+    console.log(this.permissionData);
+
+    this.permissionDataArray[i] = this.permissionData;
+
+    console.log(this.permissionDataArray);
+
+    // if(this.permissionDataArray[i] == undefined) {
+    //   this.permissionDataArray[i] = this.permissionData;
+    // } else {
+    //   this.pe
+    // }
+
+
+
+    // if(this.permissionDataArray.length == 0) {
+    //   this.permissionDataArray.push(this.permissionData);
+    // } else {
+    //   this.permissionDataArray.forEach( (row, i) => {
+    //     if(row.deptid == this.departmentList[i].deid) {
+    //       this.permissionDataArray[i] = this.permissionData;
+    //     } else {
+    //       this.permissionDataArray.push(this.permissionData);
+    //     }
+    //   })
+    // }
+
+    // this.permissionDataArra
+
+
+
+    // this.permissionDataArray.push(this.permissionData);
+    // console.log(this.permissionDataArray);
+
+  }
+
+
+  saveDepartmentAccess(): void {
+    console.log(this.permissionDataArray);
+
+  }
+
+
 }
